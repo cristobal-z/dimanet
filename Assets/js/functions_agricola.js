@@ -228,6 +228,8 @@ document.addEventListener('DOMContentLoaded', function(){
 
             e.preventDefault();
 
+            let usu_maq = document.querySelector('#usu_maq').value;
+
             let strNombre = document.querySelector('#usu_nom').value;
 
             let strEmail = document.querySelector('#usu_correo').value;

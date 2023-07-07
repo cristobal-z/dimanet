@@ -122,6 +122,8 @@
 
 							$request_user = $this->model->updateUsuario($idUsuario,
 
+																		$usu_maq,
+
 																		$strNombre,
 
 																		$strCiudad,

@@ -574,6 +574,8 @@ function fntEditLead(element,idlead){
 
                 document.querySelector("#usu_id").value = objData.data.usu_id;
 
+                document.querySelector("#usu_maq").value = objData.data.usu_maq;
+
                 document.querySelector("#usu_nom").value = objData.data.usu_nom;
 
                 document.querySelector("#usu_correo").value = objData.data.usu_correo;

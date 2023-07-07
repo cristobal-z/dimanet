@@ -110,11 +110,13 @@ class AgricolaModel extends Mysql{
 
 
 
-	public function updateUsuario(int $idUsuario, string $nombre, string $ciudad, string $telefono, string $email, string $canal, string $vendedor, string $comentarios){
+	public function updateUsuario(int $idUsuario,string $maq, string $nombre, string $ciudad, string $telefono, string $email, string $canal, string $vendedor, string $comentarios){
 
 
 
 		$this->intIdUsuario = $idUsuario;
+
+		$this->usu_maq = $maq;
 
 		$this->strNombre = $nombre;
 
@@ -144,11 +146,14 @@ class AgricolaModel extends Mysql{
 
 		{
 
-			$sql = "UPDATE tm_agricola SET usu_nom=?, usu_city=?, usu_num=?, usu_correo=?, usu_canal=?, usu_vendedor=?, usu_cmt=? 
+			$sql = "UPDATE tm_agricola SET usu_maq=?, usu_nom=?, usu_city=?, usu_num=?, usu_correo=?, usu_canal=?, usu_vendedor=?, usu_cmt=? 
 
 						WHERE usu_id = $this->intIdUsuario ";
 
-						$arrData = array($this->strNombre,
+						$arrData = array(
+						$this->usu_maq,
+							
+						$this->strNombre,
 
 						$this->strCiudad,
 

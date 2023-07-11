@@ -375,7 +375,7 @@ document.addEventListener('DOMContentLoaded', function(){
                         $('#modalFormUsuario').modal("hide");
 
                         formUsuario.reset();
-
+                        tableAgricola.api().ajax.reload();
                         swal("Agricola", objData.msg ,"success");
 
                     }else{

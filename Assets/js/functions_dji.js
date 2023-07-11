@@ -141,6 +141,7 @@ document.addEventListener('DOMContentLoaded', function(){
             {"data":"fech_crea"},
 
             {"data":"est"},
+
             {"data":"usu_maq"},
 
             {"data":"usu_nom"},
@@ -152,6 +153,7 @@ document.addEventListener('DOMContentLoaded', function(){
             {"data":"usu_vendedor"},
 
             {"data":"landing_page"},
+
             {"data":"usu_cmt"},
 
             {"data":"options"}
@@ -298,6 +300,13 @@ document.addEventListener('DOMContentLoaded', function(){
 
                         if(rowTable == ""){
 
+                           
+
+
+                            //alert("hola");
+
+                           // window.location.reload()
+
                             tableDji.api().ajax.reload();
 
                         }else{
@@ -376,7 +385,9 @@ document.addEventListener('DOMContentLoaded', function(){
 
                         formUsuario.reset();
 
-                        swal("Dji", objData.msg ,"success");
+                       swal("Dji", objData.msg ,"success");
+                       tableDji.api().ajax.reload();
+                        //window.location.reload();
 
                     }else{
 
@@ -573,6 +584,8 @@ function fntEditLead(element,idlead){
             {
 
                 document.querySelector("#usu_id").value = objData.data.usu_id;
+
+                document.querySelector("#usu_maq").value = objData.data.usu_maq;
 
                 document.querySelector("#usu_nom").value = objData.data.usu_nom;
 

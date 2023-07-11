@@ -376,6 +376,9 @@ document.addEventListener('DOMContentLoaded', function(){
 
                         formUsuario.reset();
 
+                        tableConstruccion.api().ajax.reload();
+                        
+
                         swal("Construccion", objData.msg ,"success");
 
                     }else{
@@ -573,6 +576,8 @@ function fntEditLead(element,idlead){
             {
 
                 document.querySelector("#usu_id").value = objData.data.usu_id;
+
+                document.querySelector("#usu_maq").value = objData.data.usu_maq;
 
                 document.querySelector("#usu_nom").value = objData.data.usu_nom;
 

@@ -381,6 +381,7 @@ document.addEventListener('DOMContentLoaded', function(){
                         $('#modalFormUsuario').modal("hide");
 
                         formUsuario.reset();
+                        tableRefacciones.api().ajax.reload();
 
                         swal("Refacciones", objData.msg ,"success");
 

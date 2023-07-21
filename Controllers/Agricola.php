@@ -206,7 +206,7 @@
 
 					{
 
-						$arrData[$i]['est'] = '<span id="boton-status" class="boton-status badge badge-info" style="margin-left: 20px; margin-bottom: 8px;">No Atendido</span>
+						$arrData[$i]['est'] = '<span id="boton-status" class="boton-status badge badge-info" style="margin-left: 20px; margin-bottom: 8px;">No Atendido</span><br>
 
 						<button class="btn btn-outline-success btn-sm btnStatus" style="margin-left: 40px; margin-top: 2px;" onClick="startStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención"><i class="fa fa-play" aria-hidden="true"></i>
 
@@ -214,17 +214,41 @@
 
 					}else if($arrData[$i]['est'] == 0){
 
-						$arrData[$i]['est'] = '<span id="boton-status" class="boton-status badge badge-dark" style="margin-left: 20px; margin-bottom: 8px;">Canalizado</span>
+						$arrData[$i]['est'] = '<span id="boton-status" class="boton-status badge badge-dark" style="margin-left: 20px; margin-bottom: 8px;">Canalizado</span><br>
 
-						<button class="btn btn-dark btn-sm btnStatus" style="margin-left: 20px;" onClick="canalizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención">1</button>
+						<button class="btn btn-dark btn-sm btnStatus" style="margin-left: 20px;" onClick="canalizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Canalización"><i class="fa fa-user-o" aria-hidden="true"></i></button>
 
-						<button class="btn btn-outline-danger btn-sm btnStatus" onClick="demoStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención">2</button>
+						<button class="btn btn-outline-danger btn-sm btnStatus" onClick="demoStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Demostración"><i class="fa fa-calendar" aria-hidden="true"></i></button>
 
-						<button class="btn btn-outline-warning btn-sm btnStatus" style="margin-left: 20px; margin-top: 2px;" onClick="cotizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención">3</button>
+						<button class="btn btn-outline-warning btn-sm btnStatus" style="margin-left: 20px; margin-top: 2px;" onClick="cotizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Negociación"><i class="fa fa-briefcase" aria-hidden="true"></i></button>
 
-						<button class="btn btn-outline-success btn-sm btnStatus" style="margin-top: 2px;" onClick="comprarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención">4</button>';
+						<button class="btn btn-outline-success btn-sm btnStatus" style="margin-top: 2px;" onClick="comprarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Compra"><i class="fa fa-money" aria-hidden="true"></i></button> <br>
 
-	
+						<button class="btn btn-outline-secondary btn-sm btnStatus" style="margin-left: 35px; margin-top: 2px;" onClick="offStatus('.$arrData[$i]['usu_id'].')" title="Apagar Lead"><i class="fa fa-toggle-off" aria-hidden="true"></i></button>';
+
+
+
+						if($arrData[$i]['act'] == 2){
+
+							$arrData[$i]['est'] = '<span id="boton-status" class="boton-status badge badge-dark" style="margin-left: 20px; margin-bottom: 8px;">Canalizado</span><br>
+
+							<button class="btn btn-dark btn-sm btnStatus" style="margin-left: 20px;" onClick="canalizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Canalización" disabled><i class="fa fa-user-o" aria-hidden="true"></i></button>
+
+							<button class="btn btn-outline-danger btn-sm btnStatus" onClick="demoStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Demostración" disabled><i class="fa fa-calendar" aria-hidden="true"></i></button>
+
+							<button class="btn btn-outline-warning btn-sm btnStatus" style="margin-left: 20px; margin-top: 2px;" onClick="cotizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Negociación" disabled><i class="fa fa-briefcase" aria-hidden="true"></i></button>
+
+							<button class="btn btn-outline-success btn-sm btnStatus" style="margin-top: 2px;" onClick="comprarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Compra" disabled><i class="fa fa-money" aria-hidden="true"></i></button> <br>
+
+							<button class="btn btn-outline-success btn-sm btnStatus" style="margin-left: 30px; margin-top: 2px;" onClick="onStatus('.$arrData[$i]['usu_id'].')" title="Encender Lead"><i class="fa fa-toggle-on" aria-hidden="true"></i></button>';
+
+						}
+
+						
+
+
+
+
 
 					}else if($arrData[$i]['est'] == 2){
 
@@ -234,15 +258,35 @@
 
 					}else if($arrData[$i]['est'] == 3){
 
-						$arrData[$i]['est'] = '<span id="boton-status" class="boton-status badge badge-info" style="margin-left: 20px; margin-bottom: 8px;">Atendido</span>
+						$arrData[$i]['est'] = '<span id="boton-status" class="boton-status badge badge-info" style="margin-left: 20px; margin-bottom: 8px;">Atendido</span><br>
 
-						<button class="btn btn-outline-dark btn-sm btnStatus" style="margin-left: 20px;" onClick="canalizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención">1</button>
+						<button class="btn btn-outline-dark btn-sm btnStatus" style="margin-left: 20px;" onClick="canalizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Canalización"><i class="fa fa-user-o" aria-hidden="true"></i></button>
 
-						<button class="btn btn-outline-danger btn-sm btnStatus" onClick="demoStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención">2</button>
+						<button class="btn btn-outline-danger btn-sm btnStatus" onClick="demoStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Demostración"><i class="fa fa-calendar" aria-hidden="true"></i></button><br>
 
-						<button class="btn btn-outline-warning btn-sm btnStatus" style="margin-left: 20px; margin-top: 2px;" onClick="cotizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención">3</button>
+						<button class="btn btn-outline-warning btn-sm btnStatus" style="margin-left: 20px; margin-top: 2px;" onClick="cotizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Negociación"><i class="fa fa-briefcase" aria-hidden="true"></i></button>
 
-						<button class="btn btn-outline-success btn-sm btnStatus" style="margin-top: 2px;" onClick="comprarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención">4</button>';
+						<button class="btn btn-outline-success btn-sm btnStatus" style="margin-top: 2px;" onClick="comprarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Compra"><i class="fa fa-money" aria-hidden="true"></i></button> <br>
+
+						<button class="btn btn-outline-secondary btn-sm btnStatus" style="margin-left: 35px; margin-top: 2px;" onClick="offStatus('.$arrData[$i]['usu_id'].')" title="Apagar Lead"><i class="fa fa-toggle-off" aria-hidden="true"></i></button>';
+
+
+
+						if($arrData[$i]['act'] == 2){
+
+							$arrData[$i]['est'] = '<span id="boton-status" class="boton-status badge badge-info" style="margin-left: 20px; margin-bottom: 8px;">Atendido</span>
+
+							<button class="btn btn-outline-dark btn-sm btnStatus" style="margin-left: 20px;" onClick="canalizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Canalizaciónción" disabled><i class="fa fa-user-o" aria-hidden="true"></i></button>
+
+							<button class="btn btn-outline-danger btn-sm btnStatus" onClick="demoStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Demostracióncion" disabled><i class="fa fa-calendar" aria-hidden="true"></i></button><br>
+
+							<button class="btn btn-outline-warning btn-sm btnStatus" style="margin-left: 20px; margin-top: 2px;" onClick="cotizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Negociación" disabled><i class="fa fa-briefcase" aria-hidden="true"></i></button>
+
+							<button class="btn btn-outline-success btn-sm btnStatus" style="margin-top: 2px;" onClick="comprarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Compra" disabled><i class="fa fa-money" aria-hidden="true"></i></button> <br>
+
+							<button class="btn btn-outline-success btn-sm btnStatus" style="margin-left: 30px; margin-top: 2px;" onClick="onStatus('.$arrData[$i]['usu_id'].')" title="Encender Lead"><i class="fa fa-toggle-on" aria-hidden="true"></i></button>';
+
+						}
 
 						
 
@@ -250,15 +294,35 @@
 
 					}else if($arrData[$i]['est'] == 4){
 
-						$arrData[$i]['est'] = '<span id="boton-status" class="boton-status badge badge-danger" style="margin-left: 20px; margin-bottom: 8px;">En demo</span>
+						$arrData[$i]['est'] = '<span id="boton-status" class="boton-status badge badge-danger" style="margin-left: 20px; margin-bottom: 8px;">En demo</span><br>
 
-						<button class="btn btn-outline-dark btn-sm btnStatus" style="margin-left: 20px;" onClick="canalizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención">1</button>
+						<button class="btn btn-outline-dark btn-sm btnStatus" style="margin-left: 20px;" onClick="canalizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Canalización"><i class="fa fa-user-o" aria-hidden="true"></i></button>
 
-						<button class="btn btn-danger btn-sm btnStatus" onClick="demoStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención">2</button>
+						<button class="btn btn-danger btn-sm btnStatus" onClick="demoStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Demostración"><i class="fa fa-calendar" aria-hidden="true"></i></button>
 
-						<button class="btn btn-outline-warning btn-sm btnStatus" style="margin-left: 20px; margin-top: 2px;" onClick="cotizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención">3</button>
+						<button class="btn btn-outline-warning btn-sm btnStatus" style="margin-left: 20px; margin-top: 2px;" onClick="cotizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Negociación"><i class="fa fa-briefcase" aria-hidden="true"></i></button>
 
-						<button class="btn btn-outline-success btn-sm btnStatus" style="margin-top: 2px;" onClick="comprarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención">4</button>';
+						<button class="btn btn-outline-success btn-sm btnStatus" style="margin-top: 2px;" onClick="comprarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención"><i class="fa fa-money" aria-hidden="true"></i></button><br>
+
+						<button class="btn btn-outline-secondary btn-sm btnStatus" style="margin-left: 35px; margin-top: 2px;" onClick="offStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención"><i class="fa fa-toggle-off" aria-hidden="true"></i></button>';
+
+
+
+						if($arrData[$i]['act'] == 2) {
+
+							$arrData[$i]['est'] = '<span id="boton-status" class="boton-status badge badge-danger" style="margin-left: 20px; margin-bottom: 8px;">En demo</span><br>
+
+							<button class="btn btn-outline-dark btn-sm btnStatus" style="margin-left: 20px;" onClick="canalizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Canalización" disabled><i class="fa fa-user-o" aria-hidden="true"></i></button>
+
+							<button class="btn btn-danger btn-sm btnStatus" onClick="demoStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Demostración" disabled><i class="fa fa-calendar" aria-hidden="true"></i></button>
+
+							<button class="btn btn-outline-warning btn-sm btnStatus" style="margin-left: 20px; margin-top: 2px;" onClick="cotizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Negociación" disabled><i class="fa fa-briefcase" aria-hidden="true"></i></button>
+
+							<button class="btn btn-outline-success btn-sm btnStatus" style="margin-top: 2px;" onClick="comprarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención" disabled><i class="fa fa-money" aria-hidden="true"></i></button><br>
+
+							<button class="btn btn-outline-success btn-sm btnStatus" style="margin-left: 30px; margin-top: 2px;" onClick="onStatus('.$arrData[$i]['usu_id'].')" title="Encender Lead"><i class="fa fa-toggle-on" aria-hidden="true"></i></button>';
+
+						}
 
 						
 
@@ -268,13 +332,13 @@
 
 						$arrData[$i]['est'] = '<span id="boton-status" class="boton-status badge badge-secondary">No compró</span>
 
-						<button class="btn btn-outline-dark btn-sm btnStatus" style="margin-left: 16px;" onClick="canalizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención">1</button>
+						<button class="btn btn-outline-dark btn-sm btnStatus" style="margin-left: 16px;" onClick="canalizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Canalización">1</button>
 
-						<button class="btn btn-outline-danger btn-sm btnStatus" onClick="demoStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención">2</button>
+						<button class="btn btn-outline-danger btn-sm btnStatus" onClick="demoStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Demostración"><i class="fa fa-calendar" aria-hidden="true"></i></button>
 
-						<button class="btn btn-outline-warning btn-sm btnStatus" style="margin-left: 16px; margin-top: 2px;" onClick="cotizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención">3</button>
+						<button class="btn btn-outline-warning btn-sm btnStatus" style="margin-left: 16px; margin-top: 2px;" onClick="cotizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Negociación"><i class="fa fa-briefcase" aria-hidden="true"></i></button>
 
-						<button class="btn btn-success btn-sm btnStatus" style="margin-top: 2px;" onClick="comprarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención">4</button>';
+						<button class="btn btn-success btn-sm btnStatus" style="margin-top: 2px;" onClick="comprarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención"><i class="fa fa-money" aria-hidden="true"></i></button>';
 
 						
 
@@ -284,27 +348,67 @@
 
 						$arrData[$i]['est'] = '<span id="boton-status" class="boton-status badge badge-success" style="margin-left: 20px; margin-bottom: 8px;">Compró</span><br>
 
-						<button class="btn btn-outline-dark btn-sm btnStatus" style="margin-left: 16px;" onClick="canalizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención">1</button>
+						<button class="btn btn-outline-dark btn-sm btnStatus" style="margin-left: 16px;" onClick="canalizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Canalización"><i class="fa fa-user-o" aria-hidden="true"></i></button>
 
-						<button class="btn btn-outline-danger btn-sm btnStatus" onClick="demoStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención">2</button>
+						<button class="btn btn-outline-danger btn-sm btnStatus" onClick="demoStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Demostración"><i class="fa fa-calendar" aria-hidden="true"></i></button><br>
 
-						<button class="btn btn-outline-warning btn-sm btnStatus" style="margin-left: 16px; margin-top: 2px;" onClick="cotizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención">3</button>
+						<button class="btn btn-outline-warning btn-sm btnStatus" style="margin-left: 16px; margin-top: 2px;" onClick="cotizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Negociación"><i class="fa fa-briefcase" aria-hidden="true"></i></button>
 
-						<button class="btn btn-success btn-sm btnStatus" style="margin-top: 2px;" onClick="comprarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención">4</button>';
+						<button class="btn btn-success btn-sm btnStatus" style="margin-top: 2px;" onClick="comprarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención"><i class="fa fa-money" aria-hidden="true"></i></button> <br>
+
+						<button class="btn btn-outline-secondary btn-sm btnStatus" style="margin-left: 35px; margin-top: 2px;" onClick="offStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención"><i class="fa fa-toggle-off" aria-hidden="true"></i></button>';
+
+
+
+						if($arrData[$i]['act'] == 2) {
+
+							$arrData[$i]['est'] = '<span id="boton-status" class="boton-status badge badge-success" style="margin-left: 20px; margin-bottom: 8px;">Compró</span><br>
+
+							<button class="btn btn-outline-dark btn-sm btnStatus" style="margin-left: 16px;" onClick="canalizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Canalización" disabled><i class="fa fa-user-o" aria-hidden="true"></i></button>
+
+							<button class="btn btn-outline-danger btn-sm btnStatus" onClick="demoStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Demostración" disabled><i class="fa fa-calendar" aria-hidden="true"></i></button><br>
+
+							<button class="btn btn-outline-warning btn-sm btnStatus" style="margin-left: 16px; margin-top: 2px;" onClick="cotizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Negociación" disabled><i class="fa fa-briefcase" aria-hidden="true"></i></button>
+
+							<button class="btn btn-success btn-sm btnStatus" style="margin-top: 2px;" onClick="comprarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención" disabled><i class="fa fa-money" aria-hidden="true"></i></button> <br>
+
+							<button class="btn btn-outline-success btn-sm btnStatus" style="margin-left: 30px; margin-top: 2px;" onClick="onStatus('.$arrData[$i]['usu_id'].')" title="Encender Lead a"><i class="fa fa-toggle-on" aria-hidden="true"></i></button>';
+
+						}
+
+
 
 					}else if($arrData[$i]['est'] == 7){
 
-						$arrData[$i]['est'] = '<span id="boton-status" class="boton-status badge badge-warning" style="margin-left: 20px; margin-bottom: 8px;">Cotización</span>
+						$arrData[$i]['est'] = '<span id="boton-status" class="boton-status badge badge-warning" style="margin-left: 20px; margin-bottom: 8px;">Negociación</span><br>
 
-						<button class="btn btn-outline-dark btn-sm btnStatus" style="margin-left: 16px;" onClick="canalizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención">1</button>
+						<button class="btn btn-outline-dark btn-sm btnStatus" style="margin-left: 16px;" onClick="canalizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Canalización"><i class="fa fa-user-o" aria-hidden="true"></i></button>
 
-						<button class="btn btn-outline-danger btn-sm btnStatus" onClick="demoStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención">2</button>
+						<button class="btn btn-outline-danger btn-sm btnStatus" onClick="demoStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Demostración"><i class="fa fa-calendar" aria-hidden="true"></i></button><br>
 
-						<button class="btn btn-warning btn-sm btnStatus" style="margin-left: 16px; margin-top: 2px;" onClick="cotizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención">3</button>
+						<button class="btn btn-warning btn-sm btnStatus" style="margin-left: 16px; margin-top: 2px;" onClick="cotizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Negociación"><i class="fa fa-briefcase" aria-hidden="true"></i></button>
 
-						<button class="btn btn-outline-success btn-sm btnStatus" style="margin-top: 2px;" onClick="comprarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención">4</button>';
+						<button class="btn btn-outline-success btn-sm btnStatus" style="margin-top: 2px;" onClick="comprarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención"><i class="fa fa-money" aria-hidden="true"></i></button> <br>
+
+						<button class="btn btn-outline-secondary btn-sm btnStatus" style="margin-left: 35px; margin-top: 2px;" onClick="offStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención"><i class="fa fa-toggle-off" aria-hidden="true"></i></button>';
 
 						
+
+						if($arrData[$i]['act'] == 2){
+
+							$arrData[$i]['est'] = '<span id="boton-status" class="boton-status badge badge-warning" style="margin-left: 20px; margin-bottom: 8px;">Negociación</span><br>
+
+							<button class="btn btn-outline-dark btn-sm btnStatus" style="margin-left: 16px;" onClick="canalizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Canalización" disabled><i class="fa fa-user-o" aria-hidden="true"></i></button>
+
+							<button class="btn btn-outline-danger btn-sm btnStatus" onClick="demoStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Demostración" disabled><i class="fa fa-calendar" aria-hidden="true"></i></button><br>
+
+							<button class="btn btn-warning btn-sm btnStatus" style="margin-left: 16px; margin-top: 2px;" onClick="cotizarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Negociación" disabled><i class="fa fa-briefcase" aria-hidden="true"></i></button>
+
+							<button class="btn btn-outline-success btn-sm btnStatus" style="margin-top: 2px;" onClick="comprarStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención" disabled><i class="fa fa-money" aria-hidden="true"></i></button> <br>
+
+							<button class="btn btn-outline-secondary btn-sm btnStatus" style="margin-left: 35px; margin-top: 2px;" onClick="onStatus('.$arrData[$i]['usu_id'].')" title="Iniciar Atención"><i class="fa fa-toggle-off" aria-hidden="true"></i></button>';
+
+						}
 
 
 
@@ -623,6 +727,42 @@
 					{
 
 						$arrResponse = array('status' => true, 'msg' => 'El seguimiento del lead ha finalizado');
+
+					}else{
+
+						$arrResponse = array('status' => false, 'msg' => 'Error al registrar el seguimiento del lead.');
+
+					}
+
+					echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+
+				}
+
+			}
+
+			die();
+
+		}
+
+
+
+		public function onAgricola() // funcion del controlador para enviar al modelo
+
+		{
+
+			if($_POST){
+
+				if($_SESSION['permisosMod']['u']){
+
+					$intIdpersona = intval($_POST['usu_id']);
+
+					$requestDelete = $this->model->onAgricola($intIdpersona);
+
+					if($requestDelete)
+
+					{
+
+						$arrResponse = array('status' => true, 'msg' => 'El seguimiento del lead ha continuado');
 
 					}else{
 

@@ -301,7 +301,7 @@ class AgricolaModel extends Mysql{
 
 	
 
-	public function cotizarAgricola(int $intIdpersona)
+	public function cotizarAgricola(int $intIdpersona) // funcion cotizar
 
 		{
 
@@ -319,7 +319,7 @@ class AgricolaModel extends Mysql{
 
 
 
-	public function comprarAgricola(int $intIdpersona)
+	public function comprarAgricola(int $intIdpersona) // funcion comprar
 
 		{
 
@@ -337,13 +337,31 @@ class AgricolaModel extends Mysql{
 
 	
 
-	public function offAgricola(int $intIdpersona)
+	public function offAgricola(int $intIdpersona) // funcion para apagar el lead
 
 		{
 
 			$this->intIdUsuario = $intIdpersona;
 
-			$sql = "UPDATE tm_agricola SET est = 8 WHERE usu_id = $this->intIdUsuario ";
+			$sql = "UPDATE tm_agricola SET act = 2 WHERE usu_id = $this->intIdUsuario ";
+
+			$arrData = array(0);
+
+			$request = $this->delete($sql,$arrData);
+
+			return $request;
+
+		}
+
+
+		// funcion para encender el lead agricola
+		public function onAgricola(int $intIdpersona)
+
+		{
+
+			$this->intIdUsuario = $intIdpersona;
+
+			$sql = "UPDATE tm_agricola SET act = 1 WHERE usu_id = $this->intIdUsuario ";
 
 			$arrData = array(0);
 

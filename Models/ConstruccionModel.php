@@ -345,7 +345,24 @@ class ConstruccionModel extends Mysql{
 
 			$this->intIdUsuario = $intIdpersona;
 
-			$sql = "UPDATE tm_construccion SET est = 8 WHERE usu_id = $this->intIdUsuario ";
+			$sql = "UPDATE tm_construccion SET act = 2 WHERE usu_id = $this->intIdUsuario ";
+
+			$arrData = array(0);
+
+			$request = $this->delete($sql,$arrData);
+
+			return $request;
+
+		}
+
+	
+		public function onConstruccion(int $intIdpersona)
+
+		{
+
+			$this->intIdUsuario = $intIdpersona;
+
+			$sql = "UPDATE tm_construccion SET act = 1 WHERE usu_id = $this->intIdUsuario ";
 
 			$arrData = array(0);
 

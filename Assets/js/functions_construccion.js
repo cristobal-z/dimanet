@@ -1067,7 +1067,7 @@ function offStatus(idlead){
 
                     var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 
-                    var ajaxUrl = base_url + 'dji/offDji/';
+                    var ajaxUrl = base_url + 'construccion/offConstruccion/';
 
                     var strData = "usu_id="+idlead;
 
@@ -1089,7 +1089,7 @@ function offStatus(idlead){
 
                                 swal("Seguimiento finalizado", objData.msg , "success");
 
-                                tableDji.api().ajax.reload();
+                                tableConstruccion.api().ajax.reload();
 
                             }else{
 
@@ -1108,6 +1108,73 @@ function offStatus(idlead){
               });
 
 }
+
+
+// funcion para apagar el lead
+function onStatus(idlead){
+
+    swal({
+
+                title: "Continuar seguimiento",
+
+                text: "¿Realmente quieres continuar el segumiento de este lead?",
+
+                icon: "warning",
+
+                buttons: ["No, cancelar","Si, Continuar"],
+
+               
+
+                
+
+            }).then((willDelete) => {
+
+                if (willDelete) {
+
+                    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+
+                    var ajaxUrl = base_url + 'construccion/onConstruccion/';
+
+                    var strData = "usu_id="+idlead;
+
+                    request.open("POST",ajaxUrl,true);
+
+                    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+                    request.send(strData);
+
+                    request.onreadystatechange = function () {
+
+                        if(request.readyState == 4 && request.status == 200){
+
+                            var objData = JSON.parse(request.responseText);
+
+                            if(objData.status)
+
+                            {   
+
+                                swal("Seguimiento Iniciado", objData.msg , "success");
+
+                                tableConstruccion.api().ajax.reload();
+
+                            }else{
+
+                                swal("Atención!", objData.msg , "error");
+
+                            }
+
+                        }
+
+                    }
+
+                  
+
+                } 
+
+              });
+
+}
+
 
 
 
@@ -1185,7 +1252,7 @@ function fntDelUsuario(idlead){
 
 
 
-function openModal()
+function openModal() 
 
 {
 

@@ -74,6 +74,8 @@
 
 					$strCiudad = ucwords(strClean($_POST['usu_city']));
 
+					$strSucursal = ucwords(strClean($_POST['usu_sucursal']));
+
 					$intTelefono = intval(strClean($_POST['usu_num']));
 
 					$strEmail = strtolower(strClean($_POST['usu_correo']));
@@ -101,11 +103,13 @@
 
 																				$strNombre, 
 
-																				$strCiudad, 
+																				$strEmail,
+
+																				$strSucursal,
 
 																				$intTelefono, 
 
-																				$strEmail,
+																				$strCiudad, 
 
 																				$strCanal,
 
@@ -123,21 +127,23 @@
 
 							$request_user = $this->model->updateUsuario($idUsuario,
 							
-																		$strmaq,
-																		
-																		$strNombre,
+																				$strmaq,
 
-																		$strCiudad,
+																				$strNombre, 
 
-																		$intTelefono, 
+																				$strEmail,
 
-																		$strEmail,
+																				$strSucursal,
 
-																		$strCanal, 
+																				$intTelefono, 
 
-																		$strVendedor,
+																				$strCiudad, 
 
-																		$strComentarios);
+																				$strCanal,
+
+																				$strVendedor,
+
+																				$strComentarios);
 
 						}
 
@@ -853,5 +859,3 @@
 
 
 	}
-
-?>

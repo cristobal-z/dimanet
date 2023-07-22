@@ -18,6 +18,8 @@ class AgricolaModel extends Mysql{
 
 	private $strEmail;
 
+	private $strSucursal;
+
 	private $strToken;
 
 	private $intStatus;
@@ -42,7 +44,7 @@ class AgricolaModel extends Mysql{
 
 
 
-		public function insertUsuario(string $maq ,string $nombre, string $ciudad, string $telefono, string $email, string $canal, string $vendedor, string $comentarios){
+		public function insertUsuario(string $maq ,string $nombre, string $ciudad, string $telefono, string $email, string $sucursal, string $canal, string $vendedor, string $comentarios){
 
 			$this->usu_maq = $maq;
 
@@ -53,6 +55,8 @@ class AgricolaModel extends Mysql{
 			$this->intTelefono = $telefono;
 
 			$this->strEmail = $email;
+
+			$this->strSucursal = $sucursal;
 
 			$this->strCanal = $canal;
 
@@ -74,9 +78,9 @@ class AgricolaModel extends Mysql{
 
 			{
 
-				$query_insert  = "INSERT INTO tm_agricola(usu_maq,usu_nom,usu_city,usu_num,usu_correo, usu_canal, usu_vendedor, usu_cmt, fech_crea, est)
+				$query_insert  = "INSERT INTO tm_agricola(usu_maq,usu_nom,usu_city,usu_num,usu_correo,usu_sucursal, usu_canal, usu_vendedor, usu_cmt, fech_crea, est)
 
-								  VALUES(?,?,?,?,?,?,?,?,now(),1)";
+								  VALUES(?,?,?,?,?,?,?,?,?,now(),1)";
 
 	        	$arrData = array($this->usu_maq,
 								
@@ -87,6 +91,8 @@ class AgricolaModel extends Mysql{
         						$this->intTelefono,
 
         						$this->strEmail,
+
+								$this->strSucursal,
 
         						$this->strCanal,
 
@@ -110,7 +116,7 @@ class AgricolaModel extends Mysql{
 
 
 
-	public function updateUsuario(int $idUsuario,string $maq, string $nombre, string $ciudad, string $telefono, string $email, string $canal, string $vendedor, string $comentarios){
+	public function updateUsuario(int $idUsuario,string $maq, string $nombre, string $email,string $sucursal, string $telefono, string $ciudad, string $canal, string $vendedor, string $comentarios){
 
 
 
@@ -119,6 +125,8 @@ class AgricolaModel extends Mysql{
 		$this->usu_maq = $maq;
 
 		$this->strNombre = $nombre;
+
+		$this->strSucursal = $sucursal;
 
 		$this->strCiudad = $ciudad;
 
@@ -146,7 +154,7 @@ class AgricolaModel extends Mysql{
 
 		{
 
-			$sql = "UPDATE tm_agricola SET usu_maq=?, usu_nom=?, usu_city=?, usu_num=?, usu_correo=?, usu_canal=?, usu_vendedor=?, usu_cmt=? 
+			$sql = "UPDATE tm_agricola SET usu_maq=?, usu_nom=?,usu_correo=?,usu_sucursal=?,usu_num=?,usu_city=?,usu_canal=?,usu_vendedor=?,usu_cmt=? 
 
 						WHERE usu_id = $this->intIdUsuario ";
 
@@ -155,12 +163,14 @@ class AgricolaModel extends Mysql{
 							
 						$this->strNombre,
 
-						$this->strCiudad,
+						$this->strEmail,
+
+						$this->strSucursal,
 
 						$this->intTelefono,
 
-						$this->strEmail,
-
+						$this->strCiudad,
+						
 						$this->strCanal,
 
 						$this->strVendedor,

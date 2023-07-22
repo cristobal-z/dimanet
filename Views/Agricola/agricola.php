@@ -58,6 +58,8 @@
 
                           <th>Equipo</th>
 
+                          <th>Sucursal</th>
+
                           <th>nombre</th>
 
                           <th>Teléfono</th>

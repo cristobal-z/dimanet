@@ -147,6 +147,8 @@ document.addEventListener('DOMContentLoaded', function(){
             {"data":"est"},
             {"data":"usu_maq"},
 
+            {"data":"usu_sucursal"},
+
             {"data":"usu_nom"},
 
             {"data":"usu_num"},
@@ -578,6 +580,8 @@ function fntEditLead(element,idlead){
                 document.querySelector("#usu_id").value = objData.data.usu_id;
 
                 document.querySelector("#usu_maq").value = objData.data.usu_maq;
+
+                document.querySelector("#usu_sucursal").value = objData.data.usu_sucursal;
 
                 document.querySelector("#usu_nom").value = objData.data.usu_nom;
 

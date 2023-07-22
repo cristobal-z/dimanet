@@ -10,6 +10,8 @@ class ConstruccionModel extends Mysql{
 
 	private $strMaq;
 
+	private $strSucursal;
+
 	private $strNombre;
 
 	private $strCiudad;
@@ -42,10 +44,12 @@ class ConstruccionModel extends Mysql{
 
 
 
-		public function insertUsuario(string $maquina,string $nombre, string $ciudad, string $telefono, string $email, string $canal, string $vendedor, string $comentarios){
+		public function insertUsuario(string $maquina,string $nombre,string $email, string $sucursal, string $telefono,string $ciudad,string $canal, string $vendedor, string $comentarios){
 
 
 			$this->strMaq = $maquina;
+
+			$this->strSucursal = $sucursal;
 
 			$this->strNombre = $nombre;
 
@@ -75,20 +79,22 @@ class ConstruccionModel extends Mysql{
 
 			{
 
-				$query_insert  = "INSERT INTO tm_construccion(usu_maq,usu_nom,usu_city,usu_num,usu_correo, usu_canal, usu_vendedor, usu_cmt, fech_crea, est)
+				$query_insert  = "INSERT INTO tm_construccion(usu_maq,usu_nom,usu_correo,usu_sucursal,usu_num,usu_city, usu_canal, usu_vendedor, usu_cmt, fech_crea, est)
 
-								  VALUES(?,?,?,?,?,?,?,?,now(),1)";
+								  VALUES(?,?,?,?,?,?,?,?,?,now(),1)";
 
 	        	$arrData = array(
 								$this->strMaq,
 
 								$this->strNombre,
 
+								$this->strEmail,
+
+								$this->strSucursal,
+
+								$this->intTelefono,
+
         						$this->strCiudad,
-
-        						$this->intTelefono,
-
-        						$this->strEmail,
 
         						$this->strCanal,
 
@@ -112,13 +118,15 @@ class ConstruccionModel extends Mysql{
 
 
 
-	public function updateUsuario(int $idUsuario, string $maquina, string $nombre, string $ciudad, string $telefono, string $email, string $canal, string $vendedor, string $comentarios){
+	public function updateUsuario(int $idUsuario, string $maquina,string $nombre,string $email, string $sucursal, string $telefono,string $ciudad,string $canal, string $vendedor, string $comentarios){
 
 
 
 		$this->intIdUsuario = $idUsuario;
 
 		$this->strMaq = $maquina;
+
+		$this->strSucursal = $sucursal;
 
 		$this->strNombre = $nombre;
 
@@ -148,7 +156,7 @@ class ConstruccionModel extends Mysql{
 
 		{
 
-			$sql = "UPDATE tm_construccion SET usu_maq = ?, usu_nom=?, usu_city=?, usu_num=?, usu_correo=?, usu_canal=?, usu_vendedor=?, usu_cmt=? 
+			$sql = "UPDATE tm_construccion SET usu_maq = ?, usu_nom=?,usu_correo=?,usu_sucursal=?, usu_num=?, usu_city=?,usu_canal=?, usu_vendedor=?, usu_cmt=? 
 
 						WHERE usu_id = $this->intIdUsuario ";
 

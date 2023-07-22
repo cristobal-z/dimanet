@@ -30,19 +30,27 @@
 
           <div class="form-row">
 
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
 
-              <label for="usu_nom">Nombre completo</label>
+              <label for="usu_nom">Nombre completo 5</label>
 
               <input type="text" class="form-control valid validText" id="usu_nom" name="usu_nom" required="">
 
             </div>
 
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
 
               <label for="usu_num">Numero de telefono</label>
 
               <input type="text" class="form-control valid validNumber" id="usu_num" name="usu_num">
+
+            </div>
+
+            <div class="form-group col-md-4">
+
+              <label for="usu_correo">Correo</label>
+
+              <input type="email" class="form-control " id="usu_correo" name="usu_correo">
 
             </div>
 
@@ -52,9 +60,14 @@
 
             <div class="form-group col-md-6">
 
-              <label for="usu_correo">Correo</label>
+              <label for="usu_sucursal">Sucursal</label>
+                <select class="form-control" name="usu_sucursal" id="usu_sucursal">
+                  <option value="ACAYUCAN">ACAYUCAN</option>
+                  <option value="ISLA">ISLA</option>
+                  <option value="TUXTLA">TUXTLA</option>
+                </select>
 
-              <input type="email" class="form-control " id="usu_correo" name="usu_correo">
+
 
             </div>
 

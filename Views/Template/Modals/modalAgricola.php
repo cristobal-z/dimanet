@@ -32,7 +32,7 @@
 
             <div class="form-group col-md-4">
 
-              <label for="usu_nom">Nombre completo 5</label>
+              <label for="usu_nom">Nombre completo</label>
 
               <input type="text" class="form-control valid validText" id="usu_nom" name="usu_nom" required="">
 

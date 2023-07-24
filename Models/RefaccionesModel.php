@@ -12,6 +12,8 @@ class RefaccionesModel extends Mysql{
 
 		private $strCiudad;
 
+		private $strSucursal;
+
 		private $intTelefono;
 
 		private $strParte;
@@ -31,6 +33,8 @@ class RefaccionesModel extends Mysql{
 
 		private $strComentarios;
 
+		private $strTotal;
+
 
 
 		public function __construct()
@@ -43,13 +47,15 @@ class RefaccionesModel extends Mysql{
 
 
 
-	public function insertUsuario(string $nombre, string $ciudad, string $telefono, string $parte, string $descripcion, string $serie, string $division, string $email,string $canal, string $vendedor, string $comentarios){
+	public function insertUsuario(string $nombre,string $email,string $sucursal,string $telefono, string $parte, string $descripcion, string $serie, string $division,string $ciudad, string $canal, string $vendedor, string $comentarios,$total){
 
 
 
 			$this->strNombre = $nombre;
 
 			$this->strCiudad = $ciudad;
+
+			$this->strSucursal = $sucursal;
 
 			$this->intTelefono = $telefono;
 
@@ -69,6 +75,8 @@ class RefaccionesModel extends Mysql{
 
 			$this->strComentarios = $comentarios;
 
+			$this->strTotal = $total;
+
 			$return = 0;
 
 
@@ -83,15 +91,17 @@ class RefaccionesModel extends Mysql{
 
 			{
 
-				$query_insert  = "INSERT INTO tm_refacciones(usu_nom,usu_city,usu_num,usu_part, usu_descrip,usu_serie,usu_division,usu_correo, usu_canal, usu_vendedor, usu_cmt, fech_crea, est)
+				$query_insert  = "INSERT INTO tm_refacciones(usu_nom,usu_correo,usu_sucursal,usu_num,usu_part,usu_descrip, usu_serie,usu_division,usu_city, usu_canal, usu_vendedor, usu_cmt,usu_total, fech_crea, est)
 
-								  VALUES(?,?,?,?,?,?,?,?,?,?,?,now(),1)";
+								  VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,now(),1)";
 
 	        	$arrData = array($this->strNombre,
 
-        						$this->strCiudad,
+								$this->strEmail,
 
-        						$this->intTelefono,
+								$this->strSucursal,
+
+								$this->intTelefono,
 
 								$this->strParte,
 
@@ -101,13 +111,15 @@ class RefaccionesModel extends Mysql{
 
 								$this->strDivision,
 
-        						$this->strEmail,
+        						$this->strCiudad,
 
         						$this->strCanal,
 
         						$this->strVendedor,
 
-								$this->strComentarios);
+								$this->strComentarios,
+
+								$this->strTotal);
 
 	        	$request_insert = $this->insert($query_insert,$arrData);
 
@@ -125,13 +137,15 @@ class RefaccionesModel extends Mysql{
 
 
 
-	public function updateUsuario(int $idUsuario, string $nombre, string $ciudad, string $telefono, string $parte, string $descripcion, string $serie, string $division, string $email, string $canal, string $vendedor, string $comentarios){
+	public function updateUsuario(int $idUsuario, string $nombre,string $email,string $sucursal,string $telefono, string $parte, string $descripcion, string $serie, string $division,string $ciudad, string $canal, string $vendedor, string $comentarios,$total){
 
 
 
 			$this->intIdUsuario = $idUsuario;
 
 			$this->strNombre = $nombre;
+
+			$this->strSucursal = $sucursal;
 
 			$this->strCiudad = $ciudad;
 
@@ -153,6 +167,8 @@ class RefaccionesModel extends Mysql{
 
 			$this->strComentarios = $comentarios;
 
+			$this->strTotal = $total;
+
 
 
 			// $sql = "SELECT * FROM tm_usuario WHERE (usu_correo = '{$this->strEmail}' AND usu_id != $this->intIdUsuario)
@@ -167,31 +183,35 @@ class RefaccionesModel extends Mysql{
 
 			{
 
-				$sql = "UPDATE tm_refacciones SET usu_nom=?, usu_city=?, usu_num=?, usu_part=?, usu_descrip=?, usu_serie=?, usu_division=?, usu_correo=?, usu_canal=?, usu_vendedor=?, usu_cmt=? 
+				$sql = "UPDATE tm_refacciones SET usu_nom=?,usu_correo=?,usu_sucursal=?, usu_num=?, usu_part=?, usu_descrip=?, usu_serie=?, usu_division=?,usu_city=?,usu_canal=?, usu_vendedor=?, usu_cmt=?, usu_total = ?
 
 							WHERE usu_id = $this->intIdUsuario ";
 
 							$arrData = array($this->strNombre,
 
-							$this->strCiudad,
+								$this->strEmail,
 
-							$this->intTelefono,
+								$this->strSucursal,
 
-							$this->strParte,
+								$this->intTelefono,
 
-							$this->strDescripcion,
+								$this->strParte,
 
-							$this->strSerie,
+								$this->strDescripcion,
 
-							$this->strDivision,
+								$this->strSerie,
 
-							$this->strEmail,
+								$this->strDivision,
 
-							$this->strCanal,
+        						$this->strCiudad,
 
-							$this->strVendedor,
+        						$this->strCanal,
 
-							$this->strComentarios);
+        						$this->strVendedor,
+
+								$this->strComentarios,
+							
+								$this->strTotal);
 
 				$request = $this->update($sql,$arrData);
 

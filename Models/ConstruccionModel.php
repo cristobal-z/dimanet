@@ -118,7 +118,7 @@ class ConstruccionModel extends Mysql{
 
 
 
-	public function updateUsuario(int $idUsuario, string $maquina,string $nombre,string $email, string $sucursal, string $telefono,string $ciudad,string $canal, string $vendedor, string $comentarios){
+	public function updateUsuario(int $idUsuario,string $maquina,string $nombre,string $email, string $sucursal, string $telefono,string $ciudad,string $canal, string $vendedor, string $comentarios){
 
 
 
@@ -161,21 +161,23 @@ class ConstruccionModel extends Mysql{
 						WHERE usu_id = $this->intIdUsuario ";
 
 						$arrData = array(
-						$this->strMaq,
-							
-						$this->strNombre,
+							$this->strMaq,
 
-						$this->strCiudad,
+							$this->strNombre,
 
-						$this->intTelefono,
+							$this->strEmail,
 
-						$this->strEmail,
+							$this->strSucursal,
 
-						$this->strCanal,
+							$this->intTelefono,
 
-						$this->strVendedor,
+							$this->strCiudad,
 
-						$this->strComentarios);
+							$this->strCanal,
+
+							$this->strVendedor,
+
+							$this->strComentarios);
 
 			$request = $this->update($sql,$arrData);
 

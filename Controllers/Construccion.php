@@ -101,7 +101,7 @@
 							$request_user = $this->model->insertUsuario(
 																				$strmaq,
 
-																				$strNombre, 
+																				$strNombre,
 
 																				$strEmail,
 

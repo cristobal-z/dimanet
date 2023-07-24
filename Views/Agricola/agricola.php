@@ -60,7 +60,7 @@
 
                           <th>Sucursal</th>
 
-                          <th>nombre</th>
+                          <th>Nombre</th>
 
                           <th>Teléfono</th>
 

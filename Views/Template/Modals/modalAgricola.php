@@ -62,9 +62,20 @@
 
               <label for="usu_sucursal">Sucursal</label>
                 <select class="form-control" name="usu_sucursal" id="usu_sucursal">
-                  <option value="ACAYUCAN">ACAYUCAN</option>
-                  <option value="ISLA">ISLA</option>
-                  <option value="TUXTLA">TUXTLA</option>
+                <option value="Acayucan">Acayucan</option>
+                <option value="Campeche">Campeche</option>
+                <option value="Cancun">Cancun</option>
+                <option value="Comitan">Comitan</option>
+                <option value="Isla">Isla</option>
+                <option value="Merida">Merida</option>
+                <option value="Tapachula">Tapachula</option>
+                <option value="Tierra blanca">Tierra blanca</option>
+                <option value="Tizimin">Tizimin</option>
+                <option value="Tuxtepec">Tuxtepec</option>
+                <option value="Tuxtla">Tuxtla</option>
+                <option value="Veracruz">Veracruz</option>
+                <option value="Villa hermosa">Villa hermosa</option>
+                <option value="Zapata">Zapata</option>
                 </select>
 
 

@@ -66,11 +66,15 @@
 
                           <th>Ciudad</th>
 
+                          <th>Sucursal</th>
+
                           <th>Vendedor</th>
 
                           <th>Canal</th>
 
                           <th>Comentarios</th>
+
+                          <th>Total compra</th>
 
                           <th>Acciones</th>
 

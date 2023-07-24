@@ -70,6 +70,8 @@
 
 					$strNombre = $_POST['usu_nom'];
 
+					$strsucursal = $_POST['usu_sucursal'];
+
 					$strCiudad = $_POST['usu_city'];
 
 					$intTelefono = $_POST['usu_num'];
@@ -89,6 +91,8 @@
 
 					$strComentarios = $_POST['usu_cmt'];
 
+					$strTotal = $_POST['usu_total'];
+
 					$request_user = "";
 
 					if($idUsuario == "")
@@ -103,25 +107,29 @@
 
 							$request_user = $this->model->insertUsuario($strNombre, 
 
-																				$strCiudad, 
+																				$strEmail,
 
-																				$intTelefono,
-																				
+																				$strsucursal,
+
+																				$intTelefono,														
+
 																				$strParte,
-
+																			
 																				$strDescripcion,
 
 																				$strSerie,
 
 																				$strDivision,
 
-																				$strEmail,
+																				$strCiudad,
 
 																				$strCanal,
 
 																				$strVendedor,
 
-																				$strComentarios);
+																				$strComentarios,
+
+																				$strTotal);
 
 						}
 
@@ -135,25 +143,29 @@
 
 																		$strNombre,
 
-																		$strCiudad,
+																		$strEmail,
 
-																		$intTelefono,
-																		
+																		$strsucursal,
+
+																		$intTelefono,														
+
 																		$strParte,
-
+																			
 																		$strDescripcion,
 
 																		$strSerie,
 
 																		$strDivision,
 
-																		$strEmail,
+																		$strCiudad,
 
-																		$strCanal, 
+																		$strCanal,
 
 																		$strVendedor,
 
-																		$strComentarios);
+																		$strComentarios,
+																	
+																		$strTotal);
 
 						}
 

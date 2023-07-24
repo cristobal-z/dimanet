@@ -148,11 +148,15 @@ document.addEventListener('DOMContentLoaded', function(){
 
             {"data":"usu_city"},
 
+            {"data":"usu_sucursal"},
+
             {"data":"usu_vendedor"},
 
             {"data":"usu_canal"},
 
             {"data":"usu_cmt"},
+
+            {"data":"usu_total"},
 
             {"data":"options"}
 
@@ -587,6 +591,8 @@ function fntEditLead(element,idlead){
                 document.querySelector("#usu_nom").value = objData.data.usu_nom;
 
                 document.querySelector("#usu_correo").value = objData.data.usu_correo;
+
+                document.querySelector("#usu_sucursal").value = objData.data.usu_sucursal;
 
                 document.querySelector("#usu_num").value = objData.data.usu_num;
 

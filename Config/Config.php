@@ -1,5 +1,5 @@
 <?php 
-	const BASE_URL = "http://localhost/dimanet/";
+	const BASE_URL = "http://localhost/dima/";
 	//const BASE_URL = "https://dimanet.dimasur.mx/";
 
 	//Zona horaria

@@ -154,7 +154,7 @@
 
               <label for="usu_total">Total de la venta</label>
 
-              <input type="text" class="form-control" id="usu_total" placeholder="$" name="usu_total">
+              <input type="text" class="form-control valid validNumber" id="usu_total" placeholder="$" name="usu_total">
 
             </div>
 

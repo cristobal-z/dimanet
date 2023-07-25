@@ -613,6 +613,8 @@ function fntEditLead(element,idlead){
 
                 document.querySelector("#usu_cmt").value =objData.data.usu_cmt;
 
+                document.querySelector("#usu_total").value =objData.data.usu_total;
+
 
 
 
@@ -1308,3 +1310,4 @@ function manualAyuda(){
     $('#modalFormUsuario').modal('show');
 
 }
+

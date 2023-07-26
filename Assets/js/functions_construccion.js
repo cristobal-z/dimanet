@@ -1206,7 +1206,7 @@ function fntDelUsuario(idlead){
 
                     var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 
-                    var ajaxUrl = base_url + 'construccion/delConstruccion/';
+                    var ajaxUrl = base_url + 'Construccion/delConstruccion/';
 
                     var strData = "usu_id="+idlead;
 

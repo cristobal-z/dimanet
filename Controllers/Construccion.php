@@ -465,7 +465,7 @@
 
 
 
-		public function delDji()
+		public function delConstruccion()
 
 		{
 

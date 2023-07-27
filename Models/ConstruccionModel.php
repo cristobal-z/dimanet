@@ -201,7 +201,7 @@ class ConstruccionModel extends Mysql{
 
 	{
 
-		$sql = "SELECT * FROM tm_construccion ORDER BY usu_id DESC";
+		$sql = "SELECT * FROM tm_construccion  WHERE est != 11 ORDER BY usu_id DESC";
 
 		$request = $this->select_all($sql);
 
@@ -229,7 +229,7 @@ class ConstruccionModel extends Mysql{
 
 			$this->intIdUsuario = $intIdpersona;
 
-			$sql = "UPDATE tm_construccion SET est = 11 WHERE usu_id = $this->intIdUsuario ";
+			$sql = "UPDATE tm_construccion SET est = 11 WHERE usu_id = $this->intIdUsuario "; 
 
 			$arrData = array(0);
 

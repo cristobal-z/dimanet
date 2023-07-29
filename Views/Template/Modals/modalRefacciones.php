@@ -64,10 +64,12 @@
               <label for="usu_correo">Sucursal</label>
 
               <select class="form-control" name="usu_sucursal" id="usu_sucursal">
+                <option value="Sin sucursal">Sin sucursal</option>
                 <option value="Acayucan">Acayucan</option>
                 <option value="Campeche">Campeche</option>
                 <option value="Cancun">Cancun</option>
                 <option value="Comitan">Comitan</option>
+                <option value="Chetumal">Chetumal</option>
                 <option value="Isla">Isla</option>
                 <option value="Merida">Merida</option>
                 <option value="Tapachula">Tapachula</option>

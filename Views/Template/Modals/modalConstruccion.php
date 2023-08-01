@@ -63,7 +63,7 @@
               <label for="usu_sucursal">Sucursal</label>
 
               <select class="form-control" name="usu_sucursal" id="usu_sucursal">
-                <option value="Sin sucursal">Pendiente</option>
+                <option value="Pendiente">Pendiente</option>
                 <option value="Acayucan">Acayucan</option>
                 <option value="Campeche">Campeche</option>
                 <option value="Cancun">Cancun</option>

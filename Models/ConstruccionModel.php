@@ -143,12 +143,14 @@ class ConstruccionModel extends Mysql{
 		$this->strComentarios = $comentarios;
 
 
-
+		/*
 		$sql = "SELECT * FROM tm_construccion WHERE (usu_correo = '{$this->strEmail}' AND usu_id != $this->intIdUsuario)
 
 									  OR (usu_num = '{$this->intTelefono}' AND usu_id != $this->intIdUsuario) ";
 
 		$request = $this->select_all($sql);
+
+		*/
 
 
 

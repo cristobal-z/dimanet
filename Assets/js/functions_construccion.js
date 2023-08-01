@@ -280,7 +280,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
             let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 
-            let ajaxUrl = base_url+'/Construccion/setLead'; 
+            let ajaxUrl = base_url+'Construccion/setLead'; 
 
             let formData = new FormData(formUsuario);
 

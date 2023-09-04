@@ -829,12 +829,7 @@ class Dji extends Controllers
 	}
 
 
-	public function EnviarCorreo(){
-
-		
-
-	}
-
+	
 
 
 }

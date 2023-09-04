@@ -228,6 +228,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
             e.preventDefault();
 
+            let strid = document.querySelector('#usu_id').value;
+
+            let strVendedorCopia = document.querySelector('#usu_vendedor_copia').value;
+
             let strNombre = document.querySelector('#usu_nom').value;
 
             let strCultivo = document.querySelector('#usu_cultivo').value;
@@ -375,15 +379,89 @@ document.addEventListener('DOMContentLoaded', function () {
 
                         }
 
+                        if (!strid == "") { // si el campo id no esta vacio, 
+                            console.log(strVendedor);
+
+                            let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+
+                            let ajaxUrl = base_url + '/dji/getDatos/' + strid;
+
+                            request.open("GET", ajaxUrl, true);
+
+                            request.send();
+
+                            request.onreadystatechange = function () {
+                                // valida si es correcto la consulta
+                                if (request.readyState == 4 && request.status == 200) {
+
+                                    let objData = JSON.parse(request.responseText);
+
+                                    if (objData.status) { // si el arreglo se ejecutó 
+
+                                        let maquina = objData.data.usu_maq;
+
+                                        let nombre = objData.data.usu_vendedor; // nombre del vendedor
+
+                                        let correo = objData.data.email_user;
+
+                                        let id_vendedor = objData.data.usu_asig;
+
+                                        if (strVendedorCopia != id_vendedor) {
+
+                                            //alert("son distintos" + strVendedorCopia + id_vendedor);
+
+                                            //enviar correo al vendedor registrado
+
+                                            let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+
+                                            let ajaxUrl = base_url + 'Libraries/phpmailer/enviar.php?datos=' + nombre+'&'+'correo='+ correo +'&equipo='+maquina;
+
+                                            request.open("GET", ajaxUrl, true);
+
+                                            request.send();
+                                            request.onreadystatechange = function () {
+                                                // valida si es correcto la consulta
+                                                if (request.readyState == 4 && request.status == 200) {
+
+                                                    let objDataCorreo = JSON.parse(request.responseText);
+
+                                                    if(objDataCorreo.status== true){ // si hubo algun error al enviar el correo
+                                                        swal("Dji", objDataCorreo.msg, "success");
+                                                    }else{
+                                                        swal("Error", objDataCorreo.msg, "error");
+                                                    }
+
+                                                    
 
 
-                        $('#modalFormUsuario').modal("hide");
+                                                }
 
-                        formUsuario.reset();
+                                            }
+
+
+                                        }
+
+                                    }
+
+
+                                }
+
+                            }
+                        }
+
+
+
+                         $('#modalFormUsuario').modal("hide");
+
+                         formUsuario.reset();
 
                         swal("Dji", objData.msg, "success");
                         tableDji.api().ajax.reload();
                         //window.location.reload();
+
+
+
+
 
                     } else {
 
@@ -540,14 +618,14 @@ function fntViewInfo(iddatos) {
 
 // funcion para cargar los datos de los vendedores en el modal 'Nuevo lead'
 
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
 
     fntCargarVendedores();
 
 }, false);
 
 
-function fntCargarVendedores(){
+function fntCargarVendedores() {
 
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 
@@ -559,10 +637,10 @@ function fntCargarVendedores(){
     request.onreadystatechange = function () {
         // valida si es correcto la consulta
         if (request.readyState == 4 && request.status == 200) {
-               
-              document.querySelector('#usu_vendedor').innerHTML = request.responseText;
 
-             // $('#usu_vendedor').selectpicker('render');
+            document.querySelector('#usu_vendedor').innerHTML = request.responseText;
+
+
 
         }
 
@@ -634,43 +712,29 @@ function fntEditLead(element, idlead) {
 
                 document.querySelector("#landing_page").value = objData.data.landing_page;
 
-                document.querySelector("#usu_vendedor").value =objData.data.usu_vendedor;
+                // document.querySelector("#usu_vendedor").value = objData.data.usu_vendedor;
 
-                var select  = document.getElementById("usu_vendedor");
+                document.querySelector("#usu_vendedor_copia").value = objData.data.usu_asig; // input de respaldo para validar los cambios de vendedor
+
+                var select = document.getElementById("usu_vendedor");
                 select.value = objData.data.usu_asig; // para seleccionar el item de select
 
-               // $('#usu_vendedor').val(objData.data.usu_vendedor);
-                
+                // $('#usu_vendedor').val(objData.data.usu_vendedor);
+
                 //alert(objData.data.usu_vendedor);
 
                 document.querySelector("#usu_cmt").value = objData.data.usu_cmt;
 
-                var selectElement = document.getElementById('miSelect');
 
 
+                var nombre = objData.data.usu_nom;
 
                 // funcion para traer los datos desde de los vendedores desde la bd
-/*
-                let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 
-                let ajaxUrl = base_url + '/dji/DatosVendedores/';
 
-                request.open("GET", ajaxUrl, true);
 
-                request.send();
-                request.onreadystatechange = function () {
-                    // valida si es correcto la consulta
-                    if (request.readyState == 4 && request.status == 200) {
-                           
-                          document.querySelector('#usu_vendedor').innerHTML = request.responseText;
 
-                          $('#usu_vendedor').selectpicker('render');
 
-                    }
-
-                }
-
-                */
 
                 ////////////////////////////////////////////////////////////////////////////////////
 

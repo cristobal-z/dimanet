@@ -199,7 +199,7 @@ class DjiModel extends Mysql
 	public function selecDatosVendedores()
 	{
 
-		$sql = "SELECT p.idpersona , concat_ws(' ',p.nombres,p.apellidos) as nombre FROM persona p, rol r where r.idrol = p.rolid and r.nombrerol = 'Especialista SIAP'";
+		$sql = "SELECT p.idpersona , concat_ws(' ',p.nombres,p.apellidos) as nombre FROM persona p, rol r where r.idrol = p.rolid and r.nombrerol IN  ('Especialista SIAP', 'Potencializador de Ventas Digitales')";
 
 		$request = $this->select_all($sql);
 
@@ -294,7 +294,8 @@ class DjiModel extends Mysql
 		u.fech_crea,
 		u.usu_asig,
 		u.est,
-		u.act
+		u.act,
+		p.email_user
 	FROM
 		tm_usuario u,
 		persona p

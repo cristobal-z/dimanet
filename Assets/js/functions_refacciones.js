@@ -152,6 +152,14 @@ document.addEventListener('DOMContentLoaded', function(){
 
             {"data":"usu_vendedor"},
 
+            {"data":"usu_part"},
+
+            {"data":"usu_descrip"},
+
+            {"data":"usu_serie"},
+
+            {"data":"usu_division"},
+
             {"data":"usu_canal"},
 
             {"data":"usu_cmt"},
@@ -162,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
         ],
 
-        'dom': 'lBfrtip',
+        'dom': 'lBfrtip', 
 
         'buttons': [
 

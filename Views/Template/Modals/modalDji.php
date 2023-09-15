@@ -1,6 +1,6 @@
 <!-- Modal -->
 <?php $idUsuario = $_SESSION['idUser']; // id del usuario para mostrar los leads de cada vendedor 
-
+/*
 $server = 'localhost';
 $user = 'root';
 $password = '';
@@ -14,6 +14,8 @@ if ($conexion->connect_error) {
 
 $sql = "SELECT p.idpersona ,CONCAT_WS(' ', p.nombres, p.apellidos) nombre FROM persona p, rol r where r.idrol = p.rolid and r.nombrerol = 'Especialista SIAP'";
 $exehb = $conexion->query($sql);
+
+*/
 
 $array = $_SESSION['userData']; // variable de sesion desde login
 

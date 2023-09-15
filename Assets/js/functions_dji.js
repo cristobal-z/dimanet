@@ -414,7 +414,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                                             let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 
-                                            let ajaxUrl = base_url + 'Libraries/phpmailer/enviar.php?datos=' + nombre+'&'+'correo='+ correo +'&equipo='+maquina;
+                                            let ajaxUrl = base_url + 'Libraries/phpmailer/enviar.php?datos=' + nombre + '&' + 'correo=' + correo + '&equipo=' + maquina+'&NomCli='+strNombre+'&CiuClie='+strCiudad;
 
                                             request.open("GET", ajaxUrl, true);
 
@@ -425,13 +425,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
                                                     let objDataCorreo = JSON.parse(request.responseText);
 
-                                                    if(objDataCorreo.status== true){ // si hubo algun error al enviar el correo
+                                                    if (objDataCorreo.status == true) { // si hubo algun error al enviar el correo
                                                         swal("Dji", objDataCorreo.msg, "success");
-                                                    }else{
+                                                    } else {
                                                         swal("Error", objDataCorreo.msg, "error");
                                                     }
 
-                                                    
+
 
 
                                                 }
@@ -447,13 +447,53 @@ document.addEventListener('DOMContentLoaded', function () {
                                 }
 
                             }
-                        }
+                        } /* else 
+                        
+                        { // si el campo id esta vaco es porque es un nuevo lead, y se enviara un correo de bienvenida.
+
+                            if (strEmail == "") { // se valida si el campo correo viene vacio, ya que necesitamos a fuerza el correo del cliente para enviarle la informacion
+                                alert("sin correo electronico, no se puede enviar");
+
+                            } else {
+
+
+                                let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+
+                                let ajaxUrl = base_url + 'Libraries/phpmailer/enviar.php?datosCliente=' + strNombre + '&' + 'correo=' + strEmail;
+
+                                request.open("GET", ajaxUrl, true);
+
+                                request.send();
+                                request.onreadystatechange = function () {
+                                    // valida si es correcto la consulta
+                                    if (request.readyState == 4 && request.status == 200) {
+
+                                        let objDataCorreo = JSON.parse(request.responseText);
+
+                                        if (objDataCorreo.status == true) { // si hubo algun error al enviar el correo
+                                            swal("Dji", objDataCorreo.msg, "success");
+                                        } else {
+                                            swal("Error", objDataCorreo.msg, "error");
+                                        }
 
 
 
-                         $('#modalFormUsuario').modal("hide");
 
-                         formUsuario.reset();
+                                    }
+
+                                }
+
+
+                                alert(strEmail, strNombre);
+                            }
+
+                        } */
+
+
+
+                        $('#modalFormUsuario').modal("hide");
+
+                        formUsuario.reset();
 
                         swal("Dji", objData.msg, "success");
                         tableDji.api().ajax.reload();

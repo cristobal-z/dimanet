@@ -58,7 +58,9 @@
 
                           <th>Equipo</th>
 
-                          <th>nombre</th>
+                          <th>Sucursal</th>
+
+                          <th>Nombre</th>
 
                           <th>Teléfono</th>
 

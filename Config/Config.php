@@ -1,6 +1,7 @@
 <?php 
-	const BASE_URL = "http://localhost/dimanet/";
+	//const BASE_URL = "http://localhost/dima/";
 	//const BASE_URL = "https://dimanet.dimasur.mx/";
+	const BASE_URL = "http://192.168.60.39/dima/";
 
 	//Zona horaria
 	date_default_timezone_set('America/Guatemala');

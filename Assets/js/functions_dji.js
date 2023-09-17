@@ -106,21 +106,21 @@
 
 let tableDji;
 
-let rowTable = ""; 
+let rowTable = "";
 
 let divLoading = document.querySelector("#divLoading");
 
 let bodytable = document.querySelector(".tbody");
 
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('DOMContentLoaded', function () {
 
 
 
-    tableDji = $('#tableDji').dataTable( {
+    tableDji = $('#tableDji').dataTable({
 
-        "aProcessing":true,
+        "aProcessing": true,
 
-        "aServerSide":true,
+        "aServerSide": true,
 
         "language": {
 
@@ -128,35 +128,35 @@ document.addEventListener('DOMContentLoaded', function(){
 
         },
 
-        "ajax":{
+        "ajax": {
 
-            "url": " "+base_url+"/dji/getLeads",
+            "url": " " + base_url + "/dji/getLeads",
 
-            "dataSrc":""
+            "dataSrc": ""
 
         },
 
-        "columns":[
+        "columns": [
 
-            {"data":"fech_crea"},
+            { "data": "fech_crea" },
 
-            {"data":"est"},
+            { "data": "est" },
 
-            {"data":"usu_maq"},
+            { "data": "usu_maq" },
 
-            {"data":"usu_nom"},
+            { "data": "usu_nom" },
 
-            {"data":"usu_num"},
+            { "data": "usu_num" },
 
-            {"data":"usu_city"},
+            { "data": "usu_city" },
 
-            {"data":"usu_vendedor"},
+            { "data": "usu_vendedor" },
 
-            {"data":"landing_page"},
+            { "data": "landing_page" },
 
-            {"data":"usu_cmt"},
+            { "data": "usu_cmt" },
 
-            {"data":"options"}
+            { "data": "options" }
 
         ],
 
@@ -170,37 +170,37 @@ document.addEventListener('DOMContentLoaded', function(){
 
                 "text": "<i class='far fa-copy'></i> Copiar",
 
-                "titleAttr":"Copiar",
+                "titleAttr": "Copiar",
 
                 "className": "btn btn-secondary"
 
-            },{
+            }, {
 
                 "extend": "excelHtml5",
 
                 "text": "<i class='fas fa-file-excel'></i> Excel",
 
-                "titleAttr":"Esportar a Excel",
+                "titleAttr": "Esportar a Excel",
 
                 "className": "btn btn-success"
 
-            },{
+            }, {
 
                 "extend": "pdfHtml5",
 
                 "text": "<i class='fas fa-file-pdf'></i> PDF",
 
-                "titleAttr":"Esportar a PDF",
+                "titleAttr": "Esportar a PDF",
 
                 "className": "btn btn-danger"
 
-            },{
+            }, {
 
                 "extend": "csvHtml5",
 
                 "text": "<i class='fas fa-file-csv'></i> CSV",
 
-                "titleAttr":"Esportar a CSV",
+                "titleAttr": "Esportar a CSV",
 
                 "className": "btn btn-info"
 
@@ -208,25 +208,29 @@ document.addEventListener('DOMContentLoaded', function(){
 
         ],
 
-        "resonsieve":"true",
+        "resonsieve": "true",
 
         "bDestroy": true,
 
         "iDisplayLength": 10,
 
-        "order":[[0,"desc"]]  
+        "order": [[0, "desc"]]
 
     });
 
 
 
-    if(document.querySelector("#formUsuario")){
+    if (document.querySelector("#formUsuario")) {
 
         let formUsuario = document.querySelector("#formUsuario");
 
-        formUsuario.onsubmit = function(e) {
+        formUsuario.onsubmit = function (e) {
 
             e.preventDefault();
+
+            let strid = document.querySelector('#usu_id').value;
+
+            let strVendedorCopia = document.querySelector('#usu_vendedor_copia').value;
 
             let strNombre = document.querySelector('#usu_nom').value;
 
@@ -250,11 +254,9 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 
-            if(strNombre == '' || strCiudad == '' || intTelefono == '' || strCanal  == '')
+            if (strNombre == '' || strCiudad == '' || intTelefono == '' || strCanal == '') {
 
-            {
-
-                swal("Atención", "Todos los campos son obligatorios." , "error");
+                swal("Atención", "Todos los campos son obligatorios.", "error");
 
                 return false;
 
@@ -264,52 +266,50 @@ document.addEventListener('DOMContentLoaded', function(){
 
             let elementsValid = document.getElementsByClassName("valid");
 
-            for (let i = 0; i < elementsValid.length; i++) { 
+            for (let i = 0; i < elementsValid.length; i++) {
 
-                if(elementsValid[i].classList.contains('is-invalid')) { 
+                if (elementsValid[i].classList.contains('is-invalid')) {
 
-                    swal("Atención", "Por favor verifique los campos en rojo." , "error");
+                    swal("Atención", "Por favor verifique los campos en rojo.", "error");
 
                     return false;
 
-                } 
+                }
 
-            } 
+            }
 
             divLoading.style.display = "flex";
 
             let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 
-            let ajaxUrl = base_url+'/Dji/setLead'; 
+            let ajaxUrl = base_url + '/Dji/setLead';
 
             let formData = new FormData(formUsuario);
 
-            request.open("POST",ajaxUrl,true);
+            request.open("POST", ajaxUrl, true);
 
             request.send(formData);
 
-            request.onreadystatechange = function(){
+            request.onreadystatechange = function () {
 
-                if(request.readyState == 4 && request.status == 200){
+                if (request.readyState == 4 && request.status == 200) {
 
                     let objData = JSON.parse(request.responseText);
 
-                    if(objData.status)
+                    if (objData.status) {
 
-                    {
+                        if (rowTable == "") {
 
-                        if(rowTable == ""){
 
-                           
 
 
                             //alert("hola");
 
-                           // window.location.reload()
+                            // window.location.reload()
 
                             tableDji.api().ajax.reload();
 
-                        }else{
+                        } else {
 
                             // htmlStatus = intStatus == 1 ? 
 
@@ -375,23 +375,137 @@ document.addEventListener('DOMContentLoaded', function(){
 
                             rowTable.cells[5].textContent = strVendedor;
 
-                            rowTable = ""; 
+                            rowTable = "";
 
                         }
 
-                    
+                        if (!strid == "") { // si el campo id no esta vacio, 
+                            console.log(strVendedor);
+
+                            let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+
+                            let ajaxUrl = base_url + '/dji/getDatos/' + strid;
+
+                            request.open("GET", ajaxUrl, true);
+
+                            request.send();
+
+                            request.onreadystatechange = function () {
+                                // valida si es correcto la consulta
+                                if (request.readyState == 4 && request.status == 200) {
+
+                                    let objData = JSON.parse(request.responseText);
+
+                                    if (objData.status) { // si el arreglo se ejecutó 
+
+                                        let maquina = objData.data.usu_maq;
+
+                                        let nombre = objData.data.usu_vendedor; // nombre del vendedor
+
+                                        let correo = objData.data.email_user;
+
+                                        let id_vendedor = objData.data.usu_asig;
+
+                                        if (strVendedorCopia != id_vendedor) {
+
+                                            //alert("son distintos" + strVendedorCopia + id_vendedor);
+
+                                            //enviar correo al vendedor registrado
+
+                                            let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+
+                                            let ajaxUrl = base_url + 'Libraries/phpmailer/enviar.php?datos=' + nombre + '&' + 'correo=' + correo + '&equipo=' + maquina+'&NomCli='+strNombre+'&CiuClie='+strCiudad;
+
+                                            request.open("GET", ajaxUrl, true);
+
+                                            request.send();
+                                            request.onreadystatechange = function () {
+                                                // valida si es correcto la consulta
+                                                if (request.readyState == 4 && request.status == 200) {
+
+                                                    let objDataCorreo = JSON.parse(request.responseText);
+
+                                                    if (objDataCorreo.status == true) { // si hubo algun error al enviar el correo
+                                                        swal("Dji", objDataCorreo.msg, "success");
+                                                    } else {
+                                                        swal("Error", objDataCorreo.msg, "error");
+                                                    }
+
+
+
+
+                                                }
+
+                                            }
+
+
+                                        }
+
+                                    }
+
+
+                                }
+
+                            }
+                        } /* else 
+                        
+                        { // si el campo id esta vaco es porque es un nuevo lead, y se enviara un correo de bienvenida.
+
+                            if (strEmail == "") { // se valida si el campo correo viene vacio, ya que necesitamos a fuerza el correo del cliente para enviarle la informacion
+                                alert("sin correo electronico, no se puede enviar");
+
+                            } else {
+
+
+                                let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+
+                                let ajaxUrl = base_url + 'Libraries/phpmailer/enviar.php?datosCliente=' + strNombre + '&' + 'correo=' + strEmail;
+
+                                request.open("GET", ajaxUrl, true);
+
+                                request.send();
+                                request.onreadystatechange = function () {
+                                    // valida si es correcto la consulta
+                                    if (request.readyState == 4 && request.status == 200) {
+
+                                        let objDataCorreo = JSON.parse(request.responseText);
+
+                                        if (objDataCorreo.status == true) { // si hubo algun error al enviar el correo
+                                            swal("Dji", objDataCorreo.msg, "success");
+                                        } else {
+                                            swal("Error", objDataCorreo.msg, "error");
+                                        }
+
+
+
+
+                                    }
+
+                                }
+
+
+                                alert(strEmail, strNombre);
+                            }
+
+                        } */
+
+
 
                         $('#modalFormUsuario').modal("hide");
 
                         formUsuario.reset();
 
-                       swal("Dji", objData.msg ,"success");
-                       tableDji.api().ajax.reload();
+                        swal("Dji", objData.msg, "success");
+                        tableDji.api().ajax.reload();
                         //window.location.reload();
 
-                    }else{
 
-                        swal("Error", objData.msg , "error");
+
+
+
+                    } else {
+
+                        swal("Error", objData.msg, "error");
 
                     }
 
@@ -407,9 +521,9 @@ document.addEventListener('DOMContentLoaded', function(){
 
     }
 
-   
 
-},false);
+
+}, false);
 
 
 
@@ -481,29 +595,27 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 
-function fntViewInfo(iddatos){
+function fntViewInfo(iddatos) {
 
-    let request = (window.XMLHttpRequest) ? 
+    let request = (window.XMLHttpRequest) ?
 
-                    new XMLHttpRequest() : 
+        new XMLHttpRequest() :
 
-                    new ActiveXObject('Microsoft.XMLHTTP');
+        new ActiveXObject('Microsoft.XMLHTTP');
 
-    let ajaxUrl = base_url+'/dji/getDatos/'+iddatos;
+    let ajaxUrl = base_url + '/dji/getDatos/' + iddatos;
 
-    request.open("GET",ajaxUrl,true);
+    request.open("GET", ajaxUrl, true);
 
     request.send();
 
-    request.onreadystatechange = function(){
+    request.onreadystatechange = function () {
 
-        if(request.readyState == 4 && request.status == 200){
+        if (request.readyState == 4 && request.status == 200) {
 
             let objData = JSON.parse(request.responseText);
 
-            if(objData.status)
-
-            {
+            if (objData.status) {
 
                 let objMesaje = objData.data;
 
@@ -531,15 +643,49 @@ function fntViewInfo(iddatos){
 
                 $('#modalViewDji').modal('show');
 
-            }else{
+            } else {
 
-                swal("Error", objData.msg , "error");
+                swal("Error", objData.msg, "error");
 
             }
 
         }
 
-    } 
+    }
+
+}
+
+
+// funcion para cargar los datos de los vendedores en el modal 'Nuevo lead'
+
+window.addEventListener('load', function () {
+
+    fntCargarVendedores();
+
+}, false);
+
+
+function fntCargarVendedores() {
+
+    let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+
+    let ajaxUrl = base_url + '/dji/DatosVendedores/';
+
+    request.open("GET", ajaxUrl, true);
+
+    request.send();
+    request.onreadystatechange = function () {
+        // valida si es correcto la consulta
+        if (request.readyState == 4 && request.status == 200) {
+
+            document.querySelector('#usu_vendedor').innerHTML = request.responseText;
+
+
+
+        }
+
+    }
+
 
 }
 
@@ -549,39 +695,40 @@ function fntViewInfo(iddatos){
 
 
 
-function fntEditLead(element,idlead){
 
-    rowTable = element.parentNode.parentNode.parentNode; 
 
-    document.querySelector('#titleModal').innerHTML ="Actualizar Lead";
+function fntEditLead(element, idlead) {
+
+    rowTable = element.parentNode.parentNode.parentNode;
+
+    document.querySelector('#titleModal').innerHTML = "Actualizar Lead";
 
     document.querySelector('.modal-header').classList.replace("headerRegister", "headerUpdate");
 
     document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info");
 
-    document.querySelector('#btnText').innerHTML ="Actualizar";
+    document.querySelector('#btnText').innerHTML = "Actualizar";
 
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 
-    let ajaxUrl = base_url+'/dji/getDatos/'+idlead;
+    let ajaxUrl = base_url + '/dji/getDatos/' + idlead;
 
-    request.open("GET",ajaxUrl,true);
+    request.open("GET", ajaxUrl, true);
 
     request.send();
 
-    request.onreadystatechange = function(){
+    request.onreadystatechange = function () {
 
 
 
-        if(request.readyState == 4 && request.status == 200){
+        if (request.readyState == 4 && request.status == 200) {
 
             let objData = JSON.parse(request.responseText);
 
 
 
-            if(objData.status)
-
-            {
+            if (objData.status) {
+                console.log(objData);
 
                 document.querySelector("#usu_id").value = objData.data.usu_id;
 
@@ -601,13 +748,40 @@ function fntEditLead(element,idlead){
 
                 document.querySelector("#usu_cultivo").value = objData.data.usu_cultivo;
 
-                document.querySelector("#usu_hec").value =objData.data.usu_hec;
+                document.querySelector("#usu_hec").value = objData.data.usu_hec;
 
-                document.querySelector("#landing_page").value =objData.data.landing_page;
+                document.querySelector("#landing_page").value = objData.data.landing_page;
 
-                document.querySelector("#usu_vendedor").value =objData.data.usu_vendedor;
+                // document.querySelector("#usu_vendedor").value = objData.data.usu_vendedor;
 
-                document.querySelector("#usu_cmt").value =objData.data.usu_cmt;
+                document.querySelector("#usu_vendedor_copia").value = objData.data.usu_asig; // input de respaldo para validar los cambios de vendedor
+
+                var select = document.getElementById("usu_vendedor");
+                select.value = objData.data.usu_asig; // para seleccionar el item de select
+
+                // $('#usu_vendedor').val(objData.data.usu_vendedor);
+
+                //alert(objData.data.usu_vendedor);
+
+                document.querySelector("#usu_cmt").value = objData.data.usu_cmt;
+
+
+
+                var nombre = objData.data.usu_nom;
+
+                // funcion para traer los datos desde de los vendedores desde la bd
+
+
+
+
+
+
+                ////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
 
 
 
@@ -629,7 +803,7 @@ function fntEditLead(element,idlead){
 
         }
 
-    
+
 
         $('#modalFormUsuario').modal('show');
 
@@ -641,7 +815,7 @@ function fntEditLead(element,idlead){
 
 
 
-function startStatus(idlead){
+function startStatus(idlead) {
 
     swal({
 
@@ -651,11 +825,11 @@ function startStatus(idlead){
 
         icon: "success",
 
-        buttons: ["No, cancelar","Si, contactar"],
+        buttons: ["No, cancelar", "Si, contactar"],
 
         successMode: true,
 
-        
+
 
     }).then((willDelete) => {
 
@@ -665,9 +839,9 @@ function startStatus(idlead){
 
             var ajaxUrl = base_url + 'dji/startDji/';
 
-            var strData = "usu_id="+idlead;
+            var strData = "usu_id=" + idlead;
 
-            request.open("POST",ajaxUrl,true);
+            request.open("POST", ajaxUrl, true);
 
             request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
@@ -675,21 +849,19 @@ function startStatus(idlead){
 
             request.onreadystatechange = function () {
 
-                if(request.readyState == 4 && request.status == 200){
+                if (request.readyState == 4 && request.status == 200) {
 
                     var objData = JSON.parse(request.responseText);
 
-                    if(objData.status)
+                    if (objData.status) {
 
-                    {   
-
-                        swal("Usuario atendido", objData.msg , "success");
+                        swal("Usuario atendido", objData.msg, "success");
 
                         tableDji.api().ajax.reload();
 
-                    }else{
+                    } else {
 
-                        swal("Atención!", objData.msg , "error");
+                        swal("Atención!", objData.msg, "error");
 
                     }
 
@@ -697,17 +869,17 @@ function startStatus(idlead){
 
             }
 
-          
 
-        } 
 
-      });
+        }
+
+    });
 
 }
 
 
 
-function canalizarStatus(idlead){
+function canalizarStatus(idlead) {
 
     swal({
 
@@ -727,49 +899,47 @@ function canalizarStatus(idlead){
 
         successMode: true,
 
-        
 
-    }).then(function() {
 
-            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    }).then(function () {
 
-            var ajaxUrl = base_url + 'dji/canalizarDji/';
+        var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 
-            var strData = "usu_id="+idlead;
+        var ajaxUrl = base_url + 'dji/canalizarDji/';
 
-            request.open("POST",ajaxUrl,true);
+        var strData = "usu_id=" + idlead;
 
-            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        request.open("POST", ajaxUrl, true);
 
-            request.send(strData);
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-            request.onreadystatechange = function () {
+        request.send(strData);
 
-                if(request.readyState == 4 && request.status == 200){
+        request.onreadystatechange = function () {
 
-                    var objData = JSON.parse(request.responseText);
+            if (request.readyState == 4 && request.status == 200) {
 
-                    if(objData.status)
+                var objData = JSON.parse(request.responseText);
 
-                    {   
+                if (objData.status) {
 
-                        // swal("Usuario canalizado", objData.msg , "success");
+                    // swal("Usuario canalizado", objData.msg , "success");
 
-                        tableDji.api().ajax.reload();
+                    tableDji.api().ajax.reload();
 
-                    }else{
+                } else {
 
-                        swal("Atención!", objData.msg , "error");
-
-                    }
+                    swal("Atención!", objData.msg, "error");
 
                 }
 
             }
 
-          
+        }
 
-      });
+
+
+    });
 
 }
 
@@ -777,7 +947,7 @@ function canalizarStatus(idlead){
 
 
 
-function atenderStatus(idlead){
+function atenderStatus(idlead) {
 
     swal({
 
@@ -797,55 +967,53 @@ function atenderStatus(idlead){
 
         successMode: true,
 
-        
 
-    }).then(function() {
 
-            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    }).then(function () {
 
-            var ajaxUrl = base_url + 'dji/atenderDji/';
+        var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 
-            var strData = "usu_id="+idlead;
+        var ajaxUrl = base_url + 'dji/atenderDji/';
 
-            request.open("POST",ajaxUrl,true);
+        var strData = "usu_id=" + idlead;
 
-            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        request.open("POST", ajaxUrl, true);
 
-            request.send(strData);
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-            request.onreadystatechange = function () {
+        request.send(strData);
 
-                if(request.readyState == 4 && request.status == 200){
+        request.onreadystatechange = function () {
 
-                    var objData = JSON.parse(request.responseText);
+            if (request.readyState == 4 && request.status == 200) {
 
-                    if(objData.status)
+                var objData = JSON.parse(request.responseText);
 
-                    {   
+                if (objData.status) {
 
-                        // swal("Usuario Atendido", objData.msg , "success");
+                    // swal("Usuario Atendido", objData.msg , "success");
 
-                        tableDji.api().ajax.reload();
+                    tableDji.api().ajax.reload();
 
-                    }else{
+                } else {
 
-                        swal("Atención!", objData.msg , "error");
-
-                    }
+                    swal("Atención!", objData.msg, "error");
 
                 }
 
             }
 
-          
+        }
 
-      });
+
+
+    });
 
 }
 
 
 
-function demoStatus(idlead){
+function demoStatus(idlead) {
 
     swal({
 
@@ -865,49 +1033,47 @@ function demoStatus(idlead){
 
         successMode: true,
 
-        
 
-    }).then(function() {
 
-            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    }).then(function () {
 
-            var ajaxUrl = base_url + 'dji/demoDji/';
+        var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 
-            var strData = "usu_id="+idlead;
+        var ajaxUrl = base_url + 'dji/demoDji/';
 
-            request.open("POST",ajaxUrl,true);
+        var strData = "usu_id=" + idlead;
 
-            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        request.open("POST", ajaxUrl, true);
 
-            request.send(strData);
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-            request.onreadystatechange = function () {
+        request.send(strData);
 
-                if(request.readyState == 4 && request.status == 200){
+        request.onreadystatechange = function () {
 
-                    var objData = JSON.parse(request.responseText);
+            if (request.readyState == 4 && request.status == 200) {
 
-                    if(objData.status)
+                var objData = JSON.parse(request.responseText);
 
-                    {   
+                if (objData.status) {
 
-                        // swal("Demostración agendada", objData.msg , "success");
+                    // swal("Demostración agendada", objData.msg , "success");
 
-                        tableDji.api().ajax.reload();
+                    tableDji.api().ajax.reload();
 
-                    }else{
+                } else {
 
-                        swal("Atención!", objData.msg , "error");
-
-                    }
+                    swal("Atención!", objData.msg, "error");
 
                 }
 
             }
 
-          
+        }
 
-      });
+
+
+    });
 
 }
 
@@ -915,7 +1081,7 @@ function demoStatus(idlead){
 
 
 
-function negociarStatus(idlead){
+function negociarStatus(idlead) {
 
     swal({
 
@@ -935,55 +1101,53 @@ function negociarStatus(idlead){
 
         successMode: true,
 
-        
 
-    }).then(function() {
 
-            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    }).then(function () {
 
-            var ajaxUrl = base_url + 'dji/negociarDji/';
+        var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 
-            var strData = "usu_id="+idlead;
+        var ajaxUrl = base_url + 'dji/negociarDji/';
 
-            request.open("POST",ajaxUrl,true);
+        var strData = "usu_id=" + idlead;
 
-            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        request.open("POST", ajaxUrl, true);
 
-            request.send(strData);
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-            request.onreadystatechange = function () {
+        request.send(strData);
 
-                if(request.readyState == 4 && request.status == 200){
+        request.onreadystatechange = function () {
 
-                    var objData = JSON.parse(request.responseText);
+            if (request.readyState == 4 && request.status == 200) {
 
-                    if(objData.status)
+                var objData = JSON.parse(request.responseText);
 
-                    {   
+                if (objData.status) {
 
-                        // swal("Cotización enviada correctamente", objData.msg , "success");
+                    // swal("Cotización enviada correctamente", objData.msg , "success");
 
-                        tableDji.api().ajax.reload();
+                    tableDji.api().ajax.reload();
 
-                    }else{
+                } else {
 
-                        swal("Atención!", objData.msg , "error");
-
-                    }
+                    swal("Atención!", objData.msg, "error");
 
                 }
 
             }
 
-          
+        }
 
-      });
+
+
+    });
 
 }
 
 
 
-function comprarStatus(idlead){
+function comprarStatus(idlead) {
 
     swal({
 
@@ -1003,17 +1167,81 @@ function comprarStatus(idlead){
 
         successMode: true,
 
-        
 
-    }).then(function() {
+
+    }).then(function () {
+
+        var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+
+        var ajaxUrl = base_url + 'dji/comprarDji/';
+
+        var strData = "usu_id=" + idlead;
+
+        request.open("POST", ajaxUrl, true);
+
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        request.send(strData);
+
+        request.onreadystatechange = function () {
+
+            if (request.readyState == 4 && request.status == 200) {
+
+                var objData = JSON.parse(request.responseText);
+
+                if (objData.status) {
+
+                    // swal("Solicitud de compra correctamente", objData.msg , "success");
+
+                    tableDji.api().ajax.reload();
+
+                } else {
+
+                    swal("Atención!", objData.msg, "error");
+
+                }
+
+            }
+
+        }
+
+
+
+    });
+
+}
+
+
+
+
+
+function offStatus(idlead) {
+
+    swal({
+
+        title: "Finalizar seguimiento",
+
+        text: "¿Realmente quieres finalizar el segumiento de este lead?",
+
+        icon: "warning",
+
+        buttons: ["No, cancelar", "Si, finalizar"],
+
+        dangerMode: true,
+
+
+
+    }).then((willDelete) => {
+
+        if (willDelete) {
 
             var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 
-            var ajaxUrl = base_url + 'dji/comprarDji/';
+            var ajaxUrl = base_url + 'dji/offDji/';
 
-            var strData = "usu_id="+idlead;
+            var strData = "usu_id=" + idlead;
 
-            request.open("POST",ajaxUrl,true);
+            request.open("POST", ajaxUrl, true);
 
             request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
@@ -1021,21 +1249,19 @@ function comprarStatus(idlead){
 
             request.onreadystatechange = function () {
 
-                if(request.readyState == 4 && request.status == 200){
+                if (request.readyState == 4 && request.status == 200) {
 
                     var objData = JSON.parse(request.responseText);
 
-                    if(objData.status)
+                    if (objData.status) {
 
-                    {   
-
-                        // swal("Solicitud de compra correctamente", objData.msg , "success");
+                        swal("Seguimiento finalizado", objData.msg, "success");
 
                         tableDji.api().ajax.reload();
 
-                    }else{
+                    } else {
 
-                        swal("Atención!", objData.msg , "error");
+                        swal("Atención!", objData.msg, "error");
 
                     }
 
@@ -1043,211 +1269,141 @@ function comprarStatus(idlead){
 
             }
 
-          
 
-      });
+
+        }
+
+    });
 
 }
 
 
 
-
-
-function offStatus(idlead){
+function onStatus(idlead) {
 
     swal({
 
-                title: "Finalizar seguimiento",
+        title: "Continuar seguimiento",
 
-                text: "¿Realmente quieres finalizar el segumiento de este lead?",
+        text: "¿Realmente quieres continuar el segumiento de este lead?",
 
-                icon: "warning",
+        icon: "warning",
 
-                buttons: ["No, cancelar","Si, finalizar"],
+        buttons: ["No, cancelar", "Si, Continuar"],
 
-                dangerMode: true,
 
-                
 
-            }).then((willDelete) => {
 
-                if (willDelete) {
 
-                    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    }).then((willDelete) => {
 
-                    var ajaxUrl = base_url + 'dji/offDji/';
+        if (willDelete) {
 
-                    var strData = "usu_id="+idlead;
+            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 
-                    request.open("POST",ajaxUrl,true);
+            var ajaxUrl = base_url + 'dji/onDji/';
 
-                    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            var strData = "usu_id=" + idlead;
 
-                    request.send(strData);
+            request.open("POST", ajaxUrl, true);
 
-                    request.onreadystatechange = function () {
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-                        if(request.readyState == 4 && request.status == 200){
+            request.send(strData);
 
-                            var objData = JSON.parse(request.responseText);
+            request.onreadystatechange = function () {
 
-                            if(objData.status)
+                if (request.readyState == 4 && request.status == 200) {
 
-                            {   
+                    var objData = JSON.parse(request.responseText);
 
-                                swal("Seguimiento finalizado", objData.msg , "success");
+                    if (objData.status) {
 
-                                tableDji.api().ajax.reload();
+                        swal("Seguimiento Iniciado", objData.msg, "success");
 
-                            }else{
+                        tableDji.api().ajax.reload();
 
-                                swal("Atención!", objData.msg , "error");
+                    } else {
 
-                            }
-
-                        }
+                        swal("Atención!", objData.msg, "error");
 
                     }
 
-                  
+                }
 
-                } 
+            }
 
-              });
+
+
+        }
+
+    });
 
 }
 
 
 
-function onStatus(idlead){
+
+
+function fntDelUsuario(idlead) {
 
     swal({
 
-                title: "Continuar seguimiento",
+        title: "Eliminar Perfil",
 
-                text: "¿Realmente quieres continuar el segumiento de este lead?",
+        text: "¿Realmente quiere eliminar este usuario?",
 
-                icon: "warning",
+        icon: "warning",
 
-                buttons: ["No, cancelar","Si, Continuar"],
+        buttons: ["No, cancelar", "Si, eliminar"],
 
-               
+        dangerMode: true,
 
-                
 
-            }).then((willDelete) => {
 
-                if (willDelete) {
+    }).then((willDelete) => {
 
-                    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+        if (willDelete) {
 
-                    var ajaxUrl = base_url + 'dji/onDji/';
+            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 
-                    var strData = "usu_id="+idlead;
+            var ajaxUrl = base_url + 'dji/delDji/';
 
-                    request.open("POST",ajaxUrl,true);
+            var strData = "usu_id=" + idlead;
 
-                    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            request.open("POST", ajaxUrl, true);
 
-                    request.send(strData);
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-                    request.onreadystatechange = function () {
+            request.send(strData);
 
-                        if(request.readyState == 4 && request.status == 200){
+            request.onreadystatechange = function () {
 
-                            var objData = JSON.parse(request.responseText);
+                if (request.readyState == 4 && request.status == 200) {
 
-                            if(objData.status)
+                    var objData = JSON.parse(request.responseText);
 
-                            {   
+                    if (objData.status) {
 
-                                swal("Seguimiento Iniciado", objData.msg , "success");
+                        swal("Usuario eliminado", objData.msg, "success");
 
-                                tableDji.api().ajax.reload();
+                        tableDji.api().ajax.reload();
 
-                            }else{
+                    } else {
 
-                                swal("Atención!", objData.msg , "error");
-
-                            }
-
-                        }
+                        swal("Atención!", objData.msg, "error");
 
                     }
 
-                  
+                }
 
-                } 
-
-              });
-
-}
+            }
 
 
 
+        }
 
-
-function fntDelUsuario(idlead){
-
-    swal({
-
-                title: "Eliminar Perfil",
-
-                text: "¿Realmente quiere eliminar este usuario?",
-
-                icon: "warning",
-
-                buttons: ["No, cancelar","Si, eliminar"],
-
-                dangerMode: true,
-
-                
-
-            }).then((willDelete) => {
-
-                if (willDelete) {
-
-                    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-
-                    var ajaxUrl = base_url + 'dji/delDji/';
-
-                    var strData = "usu_id="+idlead;
-
-                    request.open("POST",ajaxUrl,true);
-
-                    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-                    request.send(strData);
-
-                    request.onreadystatechange = function () {
-
-                        if(request.readyState == 4 && request.status == 200){
-
-                            var objData = JSON.parse(request.responseText);
-
-                            if(objData.status)
-
-                            {   
-
-                                swal("Usuario eliminado", objData.msg , "success");
-
-                                tableDji.api().ajax.reload();
-
-                            }else{
-
-                                swal("Atención!", objData.msg , "error");
-
-                            }
-
-                        }
-
-                    }
-
-                  
-
-                } 
-
-              });
+    });
 
 }
 
@@ -1259,19 +1415,17 @@ function fntDelUsuario(idlead){
 
 
 
-function openModal()
-
-{
+function openModal() {
 
     rowTable = "";
 
-    document.querySelector('#usu_id').value ="";
+    document.querySelector('#usu_id').value = "";
 
     document.querySelector('.modal-header').classList.replace("headerUpdate", "headerRegister");
 
     document.querySelector('#btnActionForm').classList.replace("btn-info", "btn-primary");
 
-    document.querySelector('#btnText').innerHTML ="Guardar";
+    document.querySelector('#btnText').innerHTML = "Guardar";
 
     document.querySelector('#titleModal').innerHTML = "Nuevo Usuario";
 
@@ -1285,17 +1439,17 @@ function openModal()
 
 
 
-function manualAyuda(){
+function manualAyuda() {
 
     rowTable = "";
 
-    document.querySelector('#usu_id').value ="";
+    document.querySelector('#usu_id').value = "";
 
     document.querySelector('.modal-header').classList.replace("headerUpdate", "headerRegister");
 
     document.querySelector('#btnActionForm').classList.replace("btn-info", "btn-primary");
 
-    document.querySelector('#btnText').innerHTML ="Guardar";
+    document.querySelector('#btnText').innerHTML = "Guardar";
 
     document.querySelector('#titleModal').innerHTML = "Nuevo Usuario";
 

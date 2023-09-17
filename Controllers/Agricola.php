@@ -78,6 +78,8 @@
 
 					$strEmail = strtolower(strClean($_POST['usu_correo']));
 
+					$strSucursal = ucwords(strClean($_POST['usu_sucursal']));
+
 					$strCanal = ucwords(strClean($_POST['usu_canal']));
 
 					$strVendedor = ucwords(strClean($_POST['usu_vendedor']));
@@ -106,6 +108,8 @@
 
 																				$strEmail,
 
+																				$strSucursal,
+
 																				$strCanal,
 
 																				$strVendedor,
@@ -126,11 +130,13 @@
 
 																		$strNombre,
 
-																		$strCiudad,
-
-																		$intTelefono, 
-
 																		$strEmail,
+
+																		$strSucursal,
+
+																		$intTelefono,
+
+																		$strCiudad,
 
 																		$strCanal, 
 

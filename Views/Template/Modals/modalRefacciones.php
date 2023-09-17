@@ -2,7 +2,7 @@
 
 <div class="modal fade" id="modalFormUsuario" tabindex="-1" role="dialog" aria-hidden="true">
 
-  <div class="modal-dialog modal-lg" >
+  <div class="modal-dialog modal-lg">
 
     <div class="modal-content">
 
@@ -20,143 +20,171 @@
 
       <div class="modal-body">
 
-            <form id="formUsuario" name="formUsuario" class="form-horizontal">
+        <form id="formUsuario" name="formUsuario" class="form-horizontal">
 
-              <input type="hidden" id="usu_id" name="usu_id">
+          <input type="hidden" id="usu_id" name="usu_id">
 
-              <p class="text-primary">Todos los campos son obligatorios.</p>
+          <p class="text-primary">Todos los campos son obligatorios.</p>
 
 
 
-              <div class="form-row">
+          <div class="form-row">
 
-                <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
 
-                  <label for="usu_nom">Nombre</label>
+              <label for="usu_nom">Nombre</label>
 
-                  <input type="text" class="form-control valid validText" id="usu_nom" name="usu_nom" required="">
+              <input type="text" class="form-control valid validText" id="usu_nom" name="usu_nom" required="">
 
-                </div>
+            </div>
 
-                <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
 
-                  <label for="usu_num">Numero de telefono</label>
+              <label for="usu_num">Numero de telefono</label>
 
-                  <input type="text" class="form-control valid validNumber" id="usu_num" name="usu_num" required="">
+              <input type="text" class="form-control valid validNumber" id="usu_num" name="usu_num" required="">
 
-                </div>
+            </div>
 
-              </div>
+            <div class="form-group col-md-4">
+              <label for="usu_correo">Correo</label>
 
-              <div class="form-row">
+              <input type="email" class="form-control " id="usu_correo" name="usu_correo">
 
-                <div class="form-group col-md-6">
+            </div>
 
-                  <label for="usu_correo">Correo</label>
 
-                  <input type="email" class="form-control " id="usu_correo" name="usu_correo">
 
-                </div>
+          </div>
 
-                <div class="form-group col-md-6">
+          <div class="form-row">
 
-                  <label for="usu_city">Ciudad</label>
+            <div class="form-group col-md-6">
 
-                  <input type="text" class="form-control" id="usu_city" name="usu_city" required>
+              <label for="usu_correo">Sucursal</label>
 
-                </div>
+              <select class="form-control" name="usu_sucursal" id="usu_sucursal">
+                <option value="Pendiente">Pendiente</option>
+                <option value="Acayucan">Acayucan</option>
+                <option value="Campeche">Campeche</option>
+                <option value="Cancun">Cancun</option>
+                <option value="Comitan">Comitan</option>
+                <option value="Chetumal">Chetumal</option>
+                <option value="Isla">Isla</option>
+                <option value="Merida">Merida</option>
+                <option value="Tapachula">Tapachula</option>
+                <option value="Tierra blanca">Tierra blanca</option>
+                <option value="Tizimin">Tizimin</option>
+                <option value="Tuxtepec">Tuxtepec</option>
+                <option value="Tuxtla">Tuxtla</option>
+                <option value="Veracruz">Veracruz</option>
+                <option value="Villa hermosa">Villa hermosa</option>
+                <option value="Zapata">Zapata</option>
+                
+              </select>
 
-              </div>
+            </div>
 
+            <div class="form-group col-md-6">
 
-              <div class="form-row">
+              <label for="usu_city">Ciudad</label>
 
-                <div class="form-group col-md-6">
+              <input type="text" class="form-control" id="usu_city" name="usu_city" required>
 
-                  <label for="usu_part">Numero de parte</label>
+            </div>
 
-                  <input type="text" class="form-control" id="usu_part" name="usu_part" required="">
+          </div>
 
-                </div>
 
-                <div class="form-group col-md-6">
+          <div class="form-row">
 
-                  <label for="usu_descrip">Descripción de parte</label>
+            <div class="form-group col-md-4">
 
-                  <input type="text" class="form-control" id="usu_descrip" name="usu_descrip" required="">
+              <label for="usu_serie">Numero de serie del equipo</label>
 
-                </div>
+              <input type="text" class="form-control" id="usu_serie" name="usu_serie" required="">
 
-              </div>
+            </div>
 
+            <div class="form-group col-md-4">
 
-              <div class="form-row">
+              <label for="usu_part">Numero de parte</label>
 
-                <div class="form-group col-md-6">
+              <input type="text" class="form-control" id="usu_part" name="usu_part" required="">
 
-                  <label for="usu_serie">Numero de serie del equipo</label>
+            </div>
 
-                  <input type="text" class="form-control" id="usu_serie" name="usu_serie" required="">
+            <div class="form-group col-md-4">
 
-                </div>
+              <label for="usu_descrip">Descripción de parte</label>
 
-                <div class="form-group col-md-6">
+              <input type="text" class="form-control" id="usu_descrip" name="usu_descrip" required="">
 
-                  <label for="usu_division">Division</label>
+            </div>
 
-                  <input type="text" class="form-control" id="usu_division" name="usu_division" required="">
+          </div>
 
-                </div>
 
-              </div>
 
-              
+          <div class="form-row">
 
-             
+            <div class="form-group col-md-3">
 
-             <div class="form-row">
+              <label for="usu_division">Division</label>
 
-                <div class="form-group col-md-6">
+              <input type="text" class="form-control" id="usu_division" name="usu_division" required="">
 
-                  <label for="usu_canal">Canal</label>
+            </div>
 
-                  <input type="text" class="form-control" id="usu_canal" name="usu_canal" required>
+            <div class="form-group col-md-3">
 
-                </div>
+              <label for="usu_canal">Canal</label>
 
-                <div class="form-group col-md-6">
+              <input type="text" class="form-control" id="usu_canal" name="usu_canal" required>
 
-                  <label for="usu_vendedor">Vendedor</label>
+            </div>
 
-                  <input type="text" class="form-control" id="usu_vendedor" name="usu_vendedor">
+            <div class="form-group col-md-3">
 
-                </div>
+              <label for="usu_vendedor">Vendedor</label>
 
-             </div>
+              <input type="text" class="form-control" id="usu_vendedor" name="usu_vendedor">
 
+            </div>
 
+            <div class="form-group col-md-3">
 
-             <div class="form-row">
+              <label for="usu_total">Total de la venta</label>
 
-                <div class="form-group col-md-12">
+              <input type="text" class="form-control " id="usu_total" placeholder="$" value="$" name="usu_total">
 
-                  <label for="usu_cmt">Comentarios</label>
+            </div>
 
-                  <textarea type="text" class="form-control" id="usu_cmt" name="usu_cmt" ></textarea>
+          </div>
 
-                </div>
 
-             </div>
 
-              <div class="tile-footer">
+          <div class="form-row">
 
-                <button id="btnActionForm" class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i><span id="btnText">Guardar</span></button>&nbsp;&nbsp;&nbsp;
+            <div class="form-group col-md-12">
 
-                <button class="btn btn-danger" type="button" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cerrar</button>
+              <label for="usu_cmt">Comentarios</label>
 
-              </div>
+              <textarea type="text" class="form-control" id="usu_cmt" name="usu_cmt"></textarea>
 
-            </form>
+            </div>
+
+          </div>
+
+          <div class="tile-footer">
+
+            <button id="btnActionForm" class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i><span id="btnText">Guardar</span></button>&nbsp;&nbsp;&nbsp;
+
+            <button class="btn btn-danger" type="button" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cerrar</button>
+
+          </div>
+
+        </form>
 
       </div>
 
@@ -176,7 +204,7 @@
 
 <div class="modal fade" id="modalViewRefacciones" tabindex="-1" role="dialog" aria-hidden="true">
 
-  <div class="modal-dialog" >
+  <div class="modal-dialog">
 
     <div class="modal-content">
 
@@ -278,7 +306,7 @@
 
             </tr>
 
-            
+
 
             <tr>
 
@@ -304,7 +332,7 @@
 
             </tr>
 
-           
+
 
           </tbody>
 
@@ -323,6 +351,3 @@
   </div>
 
 </div>
-
-
-

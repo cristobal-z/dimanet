@@ -10,6 +10,8 @@ class ConstruccionModel extends Mysql{
 
 	private $strMaq;
 
+	private $strSucursal;
+
 	private $strNombre;
 
 	private $strCiudad;
@@ -42,10 +44,12 @@ class ConstruccionModel extends Mysql{
 
 
 
-		public function insertUsuario(string $maquina,string $nombre, string $ciudad, string $telefono, string $email, string $canal, string $vendedor, string $comentarios){
+		public function insertUsuario(string $maquina,string $nombre,string $email, string $sucursal, string $telefono,string $ciudad,string $canal, string $vendedor, string $comentarios){
 
 
 			$this->strMaq = $maquina;
+
+			$this->strSucursal = $sucursal;
 
 			$this->strNombre = $nombre;
 
@@ -75,20 +79,22 @@ class ConstruccionModel extends Mysql{
 
 			{
 
-				$query_insert  = "INSERT INTO tm_construccion(usu_maq,usu_nom,usu_city,usu_num,usu_correo, usu_canal, usu_vendedor, usu_cmt, fech_crea, est)
+				$query_insert  = "INSERT INTO tm_construccion(usu_maq,usu_nom,usu_correo,usu_sucursal,usu_num,usu_city, usu_canal, usu_vendedor, usu_cmt, fech_crea, est)
 
-								  VALUES(?,?,?,?,?,?,?,?,now(),1)";
+								  VALUES(?,?,?,?,?,?,?,?,?,now(),1)";
 
 	        	$arrData = array(
 								$this->strMaq,
 
 								$this->strNombre,
 
+								$this->strEmail,
+
+								$this->strSucursal,
+
+								$this->intTelefono,
+
         						$this->strCiudad,
-
-        						$this->intTelefono,
-
-        						$this->strEmail,
 
         						$this->strCanal,
 
@@ -112,13 +118,15 @@ class ConstruccionModel extends Mysql{
 
 
 
-	public function updateUsuario(int $idUsuario, string $maquina, string $nombre, string $ciudad, string $telefono, string $email, string $canal, string $vendedor, string $comentarios){
+	public function updateUsuario(int $idUsuario,string $maquina,string $nombre,string $email, string $sucursal, string $telefono,string $ciudad,string $canal, string $vendedor, string $comentarios){
 
 
 
 		$this->intIdUsuario = $idUsuario;
 
 		$this->strMaq = $maquina;
+
+		$this->strSucursal = $sucursal;
 
 		$this->strNombre = $nombre;
 
@@ -135,12 +143,14 @@ class ConstruccionModel extends Mysql{
 		$this->strComentarios = $comentarios;
 
 
-
+		/*
 		$sql = "SELECT * FROM tm_construccion WHERE (usu_correo = '{$this->strEmail}' AND usu_id != $this->intIdUsuario)
 
 									  OR (usu_num = '{$this->intTelefono}' AND usu_id != $this->intIdUsuario) ";
 
 		$request = $this->select_all($sql);
+
+		*/
 
 
 
@@ -148,26 +158,28 @@ class ConstruccionModel extends Mysql{
 
 		{
 
-			$sql = "UPDATE tm_construccion SET usu_maq = ?, usu_nom=?, usu_city=?, usu_num=?, usu_correo=?, usu_canal=?, usu_vendedor=?, usu_cmt=? 
+			$sql = "UPDATE tm_construccion SET usu_maq = ?, usu_nom=?,usu_correo=?,usu_sucursal=?, usu_num=?, usu_city=?,usu_canal=?, usu_vendedor=?, usu_cmt=? 
 
 						WHERE usu_id = $this->intIdUsuario ";
 
 						$arrData = array(
-						$this->strMaq,
-							
-						$this->strNombre,
+							$this->strMaq,
 
-						$this->strCiudad,
+							$this->strNombre,
 
-						$this->intTelefono,
+							$this->strEmail,
 
-						$this->strEmail,
+							$this->strSucursal,
 
-						$this->strCanal,
+							$this->intTelefono,
 
-						$this->strVendedor,
+							$this->strCiudad,
 
-						$this->strComentarios);
+							$this->strCanal,
+
+							$this->strVendedor,
+
+							$this->strComentarios);
 
 			$request = $this->update($sql,$arrData);
 
@@ -191,7 +203,7 @@ class ConstruccionModel extends Mysql{
 
 	{
 
-		$sql = "SELECT * FROM tm_construccion ORDER BY usu_id DESC";
+		$sql = "SELECT * FROM tm_construccion  WHERE est != 11 ORDER BY usu_id DESC";
 
 		$request = $this->select_all($sql);
 
@@ -219,7 +231,7 @@ class ConstruccionModel extends Mysql{
 
 			$this->intIdUsuario = $intIdpersona;
 
-			$sql = "UPDATE tm_construccion SET est = 11 WHERE usu_id = $this->intIdUsuario ";
+			$sql = "UPDATE tm_construccion SET est = 11 WHERE usu_id = $this->intIdUsuario "; 
 
 			$arrData = array(0);
 
@@ -345,7 +357,24 @@ class ConstruccionModel extends Mysql{
 
 			$this->intIdUsuario = $intIdpersona;
 
-			$sql = "UPDATE tm_construccion SET est = 8 WHERE usu_id = $this->intIdUsuario ";
+			$sql = "UPDATE tm_construccion SET act = 2 WHERE usu_id = $this->intIdUsuario ";
+
+			$arrData = array(0);
+
+			$request = $this->delete($sql,$arrData);
+
+			return $request;
+
+		}
+
+	
+		public function onConstruccion(int $intIdpersona)
+
+		{
+
+			$this->intIdUsuario = $intIdpersona;
+
+			$sql = "UPDATE tm_construccion SET act = 1 WHERE usu_id = $this->intIdUsuario ";
 
 			$arrData = array(0);
 

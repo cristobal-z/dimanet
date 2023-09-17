@@ -148,17 +148,29 @@ document.addEventListener('DOMContentLoaded', function(){
 
             {"data":"usu_city"},
 
+            {"data":"usu_sucursal"},
+
             {"data":"usu_vendedor"},
+
+            {"data":"usu_part"},
+
+            {"data":"usu_descrip"},
+
+            {"data":"usu_serie"},
+
+            {"data":"usu_division"},
 
             {"data":"usu_canal"},
 
             {"data":"usu_cmt"},
 
+            {"data":"usu_total"},
+
             {"data":"options"}
 
         ],
 
-        'dom': 'lBfrtip',
+        'dom': 'lBfrtip', 
 
         'buttons': [
 
@@ -588,6 +600,8 @@ function fntEditLead(element,idlead){
 
                 document.querySelector("#usu_correo").value = objData.data.usu_correo;
 
+                document.querySelector("#usu_sucursal").value = objData.data.usu_sucursal;
+
                 document.querySelector("#usu_num").value = objData.data.usu_num;
 
                 document.querySelector('#usu_part').value = objData.data.usu_part;
@@ -606,6 +620,8 @@ function fntEditLead(element,idlead){
                 document.querySelector("#usu_vendedor").value =objData.data.usu_vendedor;
 
                 document.querySelector("#usu_cmt").value =objData.data.usu_cmt;
+
+                document.querySelector("#usu_total").value =objData.data.usu_total;
 
 
 
@@ -1302,3 +1318,4 @@ function manualAyuda(){
     $('#modalFormUsuario').modal('show');
 
 }
+

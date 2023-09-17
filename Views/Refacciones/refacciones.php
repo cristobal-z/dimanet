@@ -18,7 +18,7 @@
 
                 <button class="btn btn-primary" type="button" onclick="openModal();" ><i class="fas fa-plus-circle"></i> Nuevo</button>
 
-                <button class="btn btn-primary" type="button" onclick="manualAyuda()" style="margin-left: 12px;"><i class="fa fa-file-archive-o" aria-hidden="true"></i>Manual de ayuda</button>
+             <!--  <button class="btn btn-primary" type="button" onclick="manualAyuda()" style="margin-left: 12px;"><i class="fa fa-file-archive-o" aria-hidden="true"></i> de ayuda</button>-->
 
               <?php } ?>
 
@@ -66,11 +66,23 @@
 
                           <th>Ciudad</th>
 
+                          <th>Sucursal</th>
+
                           <th>Vendedor</th>
+
+                          <th>No parte</th>
+
+                          <th>Descripcion</th>
+
+                          <th>Serie</th>
+
+                          <th>Division</th>
 
                           <th>Canal</th>
 
                           <th>Comentarios</th>
+
+                          <th>Total compra</th>
 
                           <th>Acciones</th>
 

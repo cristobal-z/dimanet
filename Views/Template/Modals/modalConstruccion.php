@@ -30,7 +30,7 @@
 
           <div class="form-row">
 
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
 
               <label for="usu_nom">Nombre</label>
 
@@ -38,11 +38,19 @@
 
             </div>
 
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
 
               <label for="usu_num">Numero</label>
 
               <input type="text" class="form-control valid validNumber" id="usu_num" name="usu_num">
+
+            </div>
+
+            <div class="form-group col-md-4">
+
+              <label for="usu_correo">Correo</label>
+
+              <input type="email" class="form-control " placeholder="algo@algo.com" id="usu_correo" name="usu_correo">
 
             </div>
 
@@ -52,9 +60,31 @@
 
             <div class="form-group col-md-6">
 
-              <label for="usu_correo">Correo</label>
+              <label for="usu_sucursal">Sucursal</label>
 
-              <input type="email" class="form-control " id="usu_correo" name="usu_correo">
+              <select class="form-control" name="usu_sucursal" id="usu_sucursal">
+                <option value="Pendiente">Pendiente</option>
+                <option value="Acayucan">Acayucan</option>
+                <option value="Campeche">Campeche</option>
+                <option value="Cancun">Cancun</option>
+                <option value="Comitan">Comitan</option>
+                <option value="Chetumal">Chetumal</option>
+                <option value="Isla">Isla</option>
+                <option value="Merida">Merida</option>
+                <option value="Tapachula">Tapachula</option>
+                <option value="Tierra blanca">Tierra blanca</option>
+                <option value="Tizimin">Tizimin</option>
+                <option value="Tuxtepec">Tuxtepec</option>
+                <option value="Tuxtla">Tuxtla</option>
+                <option value="Veracruz">Veracruz</option>
+                <option value="Villa hermosa">Villa hermosa</option>
+                <option value="Zapata">Zapata</option>
+
+    
+
+              </select>
+
+              
 
             </div>
 

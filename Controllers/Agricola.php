@@ -858,8 +858,33 @@
 
 		}
 
+		public function DatosVendedores()
+		{
+	
+			$htmlOptions = "";
+			$arrayVendedores = $this->model->selecDatosVendedores(); 
+	
+			if (count($arrayVendedores) > 0) {
+	
+				for ($i = 0; $i < count($arrayVendedores); $i++) {
+	
+					
+	
+						$htmlOptions .= '<option value="' . $arrayVendedores[$i]['idpersona'] . '">' . $arrayVendedores[$i]['nombre'] . '</option>';
+					}
+				
+			}
+	
+			echo $htmlOptions;
+	
+			die();
+		}
+
 
 
 	}
+
+
+	
 
 ?>

@@ -534,6 +534,36 @@ function fntViewInfo(iddatos){
 
 }
 
+window.addEventListener('load', function () { // funcion para ejecutar al principio
+
+    fntCargarVendedores();
+
+}, false);
+
+
+function fntCargarVendedores() { // funcion para cargar los nobres de los vendedores
+
+    let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+
+    let ajaxUrl = base_url + '/Agricola/DatosVendedores/';
+
+    request.open("GET", ajaxUrl, true);
+
+    request.send();
+    request.onreadystatechange = function () {
+        // valida si es correcto la consulta
+        if (request.readyState == 4 && request.status == 200) {
+
+            document.querySelector('#usu_vendedor').innerHTML = request.responseText;
+
+
+
+        }
+
+    }
+
+
+} 
 
 
 

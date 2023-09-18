@@ -1,4 +1,5 @@
 <!-- Modal -->
+<?php $array = $_SESSION['userData']; // variable de sesion desde login ?>
 
 <div class="modal fade" id="modalFormUsuario" tabindex="-1" role="dialog" aria-hidden="true">
 
@@ -114,11 +115,19 @@
 
             <div class="form-group col-md-4">
 
-              <label for="usu_vendedor">Vendedor</label>
+            <?php if ($array['nombrerol'] == 'Administrador' or $array['nombrerol'] == 'Coordinadora CAP' or $array['nombrerol'] == 'Gerente') {  ?>
+                <label for="usu_vendedor">Vendedor</label>
+                <select class="form-control" name="usu_vendedor" id="usu_vendedor">
 
-              <input type="text" class="form-control" id="usu_vendedor" name="usu_vendedor">
+                </select>
 
-            </div>
+                <?php } else{  ?>
+                  <label for="usu_vendedor">Id Vendedor</label>
+                <input type="text" class="form-control" readonly id="usu_vendedor" name="usu_vendedor" required>
+
+                <?php } ?>
+
+            </div> 
 
           </div>
 

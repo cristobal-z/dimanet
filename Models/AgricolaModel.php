@@ -382,6 +382,17 @@ class AgricolaModel extends Mysql{
 		}
 
 
+		public function selecDatosVendedores() // funcion para seleccionar los datos del vendedor
+	{
+
+		$sql = "SELECT p.idpersona , concat_ws(' ',p.nombres,p.apellidos) as nombre FROM persona p, rol r where r.idrol = p.rolid and r.nombrerol =  'EJECUTIVO DE VENTAS AGRICOLA'";
+
+		$request = $this->select_all($sql);
+
+		return $request;
+	}
+
+
 
 }
 

@@ -78,9 +78,9 @@ class AgricolaModel extends Mysql{
 
 			{
 
-				$query_insert  = "INSERT INTO tm_agricola(usu_maq,usu_nom,usu_city,usu_num,usu_correo,usu_sucursal, usu_canal, usu_vendedor, usu_cmt, fech_crea, est)
+				$query_insert  = "INSERT INTO tm_agricola(usu_maq,usu_nom,usu_city,usu_num,usu_correo,usu_sucursal, usu_canal, usu_cmt, fech_crea,usu_asig, est)
 
-								  VALUES(?,?,?,?,?,?,?,?,?,now(),1)";
+								  VALUES(?,?,?,?,?,?,?,?,now(),?,1)";
 
 	        	$arrData = array($this->usu_maq,
 								
@@ -96,9 +96,11 @@ class AgricolaModel extends Mysql{
 
         						$this->strCanal,
 
+								$this->strComentarios,
+
         						$this->strVendedor,
 
-								$this->strComentarios);
+								);
 
 	        	$request_insert = $this->insert($query_insert,$arrData);
 
@@ -154,7 +156,7 @@ class AgricolaModel extends Mysql{
 
 		{
 
-			$sql = "UPDATE tm_agricola SET usu_maq=?, usu_nom=?,usu_correo=?,usu_sucursal=?,usu_num=?,usu_city=?,usu_canal=?,usu_vendedor=?,usu_cmt=? 
+			$sql = "UPDATE tm_agricola SET usu_maq=?, usu_nom=?,usu_correo=?,usu_sucursal=?,usu_num=?,usu_city=?,usu_canal=?,usu_asig=?,usu_cmt=? 
 
 						WHERE usu_id = $this->intIdUsuario ";
 
@@ -199,7 +201,60 @@ class AgricolaModel extends Mysql{
 
 	{
 
-		$sql = "SELECT * FROM tm_agricola WHERE est != 11 ORDER BY usu_id DESC";
+		$array = $_SESSION['userData']; // datos del rol de usuario
+
+		if ($array['nombrerol'] == 'Administrador' or $array['nombrerol'] == 'Coordinadora CAP' or $array['nombrerol'] == 'Potencializador de Ventas Digitales') {
+
+			$sql = "SELECT 
+			a.usu_id,
+			a.usu_maq,
+			a.usu_nom,
+			a.usu_correo,
+			a.usu_sucursal,
+			a.usu_city,
+			a.usu_num,
+			a.usu_canal,
+			CONCAT_WS(' ', p.nombres, p.apellidos) AS usu_vendedor,
+			a.usu_cmt,
+			a.fech_crea,
+			a.usu_asig,
+			a.est,
+			a.act
+		FROM
+			tm_agricola a,
+			persona p
+		WHERE
+			a.usu_asig = p.idpersona AND a.est != 11
+		ORDER BY usu_id DESC";
+
+		} else {
+
+
+			$idUsuario = $_SESSION['idUser']; // id del usuario para mostrar los leads de cada vendedor 
+
+			$sql = "SELECT 
+			a.usu_id,
+			a.usu_maq,
+			a.usu_nom,
+			a.usu_correo,
+			a.usu_sucursal,
+			a.usu_city,
+			a.usu_num,
+			a.usu_canal,
+			CONCAT_WS(' ', p.nombres, p.apellidos) AS usu_vendedor,
+			a.usu_cmt,
+			a.fech_crea,
+			a.usu_asig,
+			a.est,
+			a.act
+		FROM
+			dima.tm_agricola a,
+			dima.persona p
+		WHERE
+			a.usu_asig = p.idpersona AND a.est != 11
+			AND p.idpersona = $idUsuario
+		ORDER BY usu_id DESC";
+		}
 
 		$request = $this->select_all($sql);
 
@@ -209,9 +264,32 @@ class AgricolaModel extends Mysql{
 
 
 
-	public function selectDatos(int $iddatos){
+	public function selectDatos(int $iddatos){ // funcion para cargar los datos al modal editar
 
-		$sql = "SELECT * FROM tm_agricola WHERE usu_id = {$iddatos}";
+	//	$sql = "SELECT * FROM tm_agricola WHERE usu_id = {$iddatos}";
+
+		$sql = "SELECT 
+			a.usu_id,
+			a.usu_maq,
+			a.usu_nom,
+			a.usu_correo,
+			a.usu_sucursal,
+			a.usu_city,
+			a.usu_num,
+			a.usu_canal,
+			CONCAT_WS(' ', p.nombres, p.apellidos) AS usu_vendedor,
+			a.usu_cmt,
+			a.fech_crea,
+			a.usu_asig,
+			a.est,
+			a.act,
+			p.email_user
+		FROM
+			dima.tm_agricola a,
+			dima.persona p
+		WHERE
+			a.usu_asig = p.idpersona AND a.est != 11
+			AND a.usu_id = {$iddatos}";
 
 		$request = $this->select($sql);
 
@@ -385,7 +463,7 @@ class AgricolaModel extends Mysql{
 		public function selecDatosVendedores() // funcion para seleccionar los datos del vendedor
 	{
 
-		$sql = "SELECT p.idpersona , concat_ws(' ',p.nombres,p.apellidos) as nombre FROM persona p, rol r where r.idrol = p.rolid and r.nombrerol =  'EJECUTIVO DE VENTAS AGRICOLA'";
+		$sql = "SELECT p.idpersona , concat_ws(' ',p.nombres,p.apellidos) as nombre FROM persona p, rol r where r.idrol = p.rolid and r.nombrerol IN  ('EJECUTIVO DE VENTAS AGRICOLA','Coordinadora CAP')";
 
 		$request = $this->select_all($sql);
 

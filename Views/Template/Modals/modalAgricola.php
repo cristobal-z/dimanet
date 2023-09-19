@@ -23,7 +23,9 @@
 
         <form id="formUsuario" name="formUsuario" class="form-horizontal">
 
-          <input type="hidden" id="usu_id" name="usu_id">
+          <input type="" id="usu_id" name="usu_id">
+
+          <input type="" id="usu_vendedor_copia" name="usu_vendedor_copia">
 
           <p class="text-primary">Todos los campos son obligatorios.</p>
 

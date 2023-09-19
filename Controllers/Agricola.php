@@ -194,7 +194,7 @@
 
 
 
-		public function getLeads(){
+		public function getLeads(){ 
 
 			if($_SESSION['permisosMod']['r']){
 

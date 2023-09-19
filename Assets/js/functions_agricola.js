@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
         "ajax":{
 
-            "url": " "+base_url+"/agricola/getLeads",
+            "url": " "+base_url+"/agricola/getLeads", 
 
             "dataSrc":""
 
@@ -230,7 +230,11 @@ document.addEventListener('DOMContentLoaded', function(){
 
             e.preventDefault();
 
-            let usu_maq = document.querySelector('#usu_maq').value;
+            let usu_maq = document.querySelector('#usu_maq').value; 
+
+            let strid = document.querySelector('#usu_id').value
+
+            let strVendedorCopia = document.querySelector('#usu_vendedor_copia').value;
 
             let strNombre = document.querySelector('#usu_nom').value;
 
@@ -370,6 +374,79 @@ document.addEventListener('DOMContentLoaded', function(){
 
                             rowTable = ""; 
 
+                        }
+
+                        if (!strid == "") { // si el campo id no esta vacio, 
+                            console.log(strVendedor);
+
+                            let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+
+                            let ajaxUrl = base_url + '/Agricola/getDatos/' + strid;
+
+                            request.open("GET", ajaxUrl, true);
+
+                            request.send();
+
+                            request.onreadystatechange = function () {
+                                // valida si es correcto la consulta
+                                if (request.readyState == 4 && request.status == 200) {
+
+                                    let objData = JSON.parse(request.responseText);
+
+                                    if (objData.status) { // si el arreglo se ejecutó 
+
+                                    let objData = JSON.parse(request.responseText);
+                                        console.log(objData);
+
+                                        let maquina = objData.data.usu_maq;
+
+                                        let nombre = objData.data.usu_vendedor; // nombre del vendedor
+
+                                        let correo = objData.data.email_user;
+
+                                        let id_vendedor = objData.data.usu_asig;
+
+                                        if (strVendedorCopia != id_vendedor) {
+
+                                            //alert("son distintos" + strVendedorCopia + id_vendedor);
+
+                                            //enviar correo al vendedor registrado
+
+                                            let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+
+                                            let ajaxUrl = base_url + 'Libraries/phpmailer/enviar.php?datosAgricola=' + nombre + '&' + 'correo=' + correo + '&equipo=' + maquina+'&NomCli='+strNombre+'&CiuClie='+strCiudad;
+
+                                            request.open("GET", ajaxUrl, true);
+
+                                            request.send();
+                                            request.onreadystatechange = function () {
+                                                // valida si es correcto la consulta
+                                                if (request.readyState == 4 && request.status == 200) {
+
+                                                    let objDataCorreo = JSON.parse(request.responseText);
+
+                                                    if (objDataCorreo.status == true) { // si hubo algun error al enviar el correo
+                                                        swal("Dji", objDataCorreo.msg, "success");
+                                                    } else {
+                                                        swal("Error", objDataCorreo.msg, "error");
+                                                    }
+
+
+
+
+                                                }
+
+                                            }
+
+
+                                        }
+
+                                    }
+
+
+                                }
+
+                            }
                         }
 
                     
@@ -628,7 +705,9 @@ function fntEditLead(element,idlead){
 
                 document.querySelector("#usu_canal").value =objData.data.usu_canal;
 
-                document.querySelector("#usu_vendedor").value =objData.data.usu_vendedor;
+                document.querySelector("#usu_vendedor").value =objData.data.usu_asig;
+
+                document.querySelector("#usu_vendedor_copia").value =objData.data.usu_asig;
 
                 document.querySelector("#usu_cmt").value =objData.data.usu_cmt;
 

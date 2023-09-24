@@ -1,0 +1,12 @@
+21-09-2023
+se creo el modulo refacciones
+*se agregara una nueva tabla, con campos minimos para hacer las pruebas
+22-09-2023
+SE CREO LA TABLA CON TODOS LOS CAMPOS, Y SE AGREGO UNA LLAVE FORANEA AL CAMPO USU_ASUG REFERENCIADO A LA TABLA PERSONAS
+
+24/09/2023
+carga el datatable
+inserta 
+y muestra
+se modifico Views/template/navAdmin
+y config

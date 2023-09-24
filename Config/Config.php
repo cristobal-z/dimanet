@@ -77,6 +77,7 @@
 	const MDAGRICOLA = 11;
 	const MDCONSTRUCCION = 12;
 	const MDREFACCIONES = 13;
+	const MDSERVICIO = 14;
 
 	//Páginas
 	const PINICIO = 1;

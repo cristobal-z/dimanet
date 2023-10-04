@@ -72,7 +72,19 @@
 
                           <th>Ciudad</th>
 
+                          <th>Serie</th>
+
+                          <th>Modelo</th>
+
+                          <th>Division</th>
+
+                          <th>Usuario</th>
+
+                          <th>Desc</th>
+
                           <th>Comentarios</th>
+
+                          <th>Subtotal</th>
 
                           <th>Acciones</th>
 

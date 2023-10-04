@@ -35,6 +35,12 @@ class ServicioModel extends Mysql
 
     private $strComentarios;
 
+    private $IntIdVendedor;
+
+    private $IntSubtotal;
+
+    private $StrDescripcion;
+
 
 
     public function __construct()
@@ -46,7 +52,7 @@ class ServicioModel extends Mysql
 
 
 
-    public function insertUsuario(string $factura, string $jdlink, string $sucursal, string $nombre, string $telefono, string $correo, string $direccion, string $ciudad, string $estado, string $serie, string $modelo, string $division, string $comentarios)
+    public function insertUsuario(string $factura, string $jdlink, string $sucursal, string $nombre, string $telefono, string $correo, string $direccion, string $ciudad, string $estado, string $serie, string $modelo, string $division, string $comentarios,string $subtotal, string $descripcion,  string $Vendedor)
     {
 
 
@@ -76,6 +82,12 @@ class ServicioModel extends Mysql
 
         $this->strComentarios = $comentarios;
 
+        $this->IntSubtotal = $subtotal;
+
+        $this->StrDescripcion = $descripcion;
+
+        $this->IntIdVendedor = $Vendedor;
+
 
 
         $return = 0;
@@ -90,9 +102,9 @@ class ServicioModel extends Mysql
 
         if (empty($request)) {
 
-            $query_insert  = "INSERT INTO tm_servicio(usu_fac,usu_jdl,usu_suc,usu_nom,usu_tel,usu_cor,usu_dir, usu_ciu, usu_est, usu_ser,usu_mod, usu_div,usu_com,fech_crea,usu_asig,est)
+            $query_insert  = "INSERT INTO tm_servicio(usu_fac,usu_jdl,usu_suc,usu_nom,usu_tel,usu_cor,usu_dir, usu_ciu, usu_est, usu_ser,usu_mod, usu_div,usu_com,usu_sub,usu_desc,fech_crea,usu_asig,est)
 
-								  VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,now(),10,1)";
+								  VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,now(),?,1)";
 
             $arrData = array(
                 $this->strfactura,
@@ -119,7 +131,13 @@ class ServicioModel extends Mysql
 
                 $this->strDivision,
 
-                $this->strComentarios
+                $this->strComentarios,
+
+                $this->IntSubtotal,
+
+                $this->StrDescripcion,
+
+                $this->IntIdVendedor
             );
 
             $request_insert = $this->insert($query_insert, $arrData);
@@ -135,32 +153,41 @@ class ServicioModel extends Mysql
 
 
 
-    public function updateUsuario(int $idUsuario, string $maquina, string $nombre, string $ciudad, string $telefono, string $email, string $cultivo, string $hectareas, string $canal,  string $comentarios, string $vendedor)
+    public function updateUsuario(int $idUsuario, string $factura, string $jdlink, string $sucursal, string $nombre, string $telefono, string $correo, string $direccion, string $ciudad, string $estado, string $serie, string $modelo, string $division, string $comentarios,string $subtotal, string $descripcion, string $Vendedor )
     {
-
-
-
         $this->intIdUsuario = $idUsuario;
 
-        $this->strMaq = $maquina;
+        $this->strfactura = $factura;
+
+        $this->strjdlink = $jdlink;
+
+        $this->strSucursal = $sucursal;
 
         $this->strNombre = $nombre;
 
-        $this->strCiudad = $ciudad;
-
         $this->intTelefono = $telefono;
 
-        $this->strEmail = $email;
+        $this->strCorreo = $correo;
 
-        $this->strCultivo = $cultivo;
+        $this->strDireccion = $direccion;
 
-        $this->strHectareas = $hectareas;
+        $this->strCiudad = $ciudad;
 
-        $this->strCanal = $canal;
+        $this->StrEstado = $estado;
+
+        $this->strSerie = $serie;
+
+        $this->strModelo = $modelo;
+
+        $this->strDivision = $division;
 
         $this->strComentarios = $comentarios;
 
-        $this->strVendedor = $vendedor;
+        $this->IntSubtotal = $subtotal;
+
+        $this->StrDescripcion = $descripcion;
+
+        $this->IntIdVendedor = $Vendedor;
 
 
 
@@ -174,30 +201,43 @@ class ServicioModel extends Mysql
 
         if (empty($request)) {
 
-            $sql = "UPDATE tm_usuario SET usu_maq = ?,usu_nom=?, usu_city=?, usu_num=?, usu_correo=?, usu_cultivo=?, usu_hec=?, landing_page=?, usu_cmt=?, usu_asig=?
+            $sql = "UPDATE tm_servicio SET usu_fac = ?,usu_jdl=?, usu_suc=?, usu_nom=?, usu_tel=?, usu_cor=?, usu_dir=?,usu_ciu=?,usu_est=?,usu_ser=?, usu_mod=?, usu_div=?, usu_com=?,usu_sub =?,usu_desc=?,usu_asig =?
 
 							WHERE usu_id = $this->intIdUsuario ";
 
             $arrData = array(
-                $this->strMaq,
+
+                $this->strfactura,
+
+                $this->strjdlink,
+
+                $this->strSucursal,
 
                 $this->strNombre,
 
-                $this->strCiudad,
-
                 $this->intTelefono,
 
-                $this->strEmail,
+                $this->strCorreo,
 
-                $this->strCultivo,
+                $this->strDireccion,
 
-                $this->strHectareas,
+                $this->strCiudad,
 
-                $this->strCanal,
+                $this->StrEstado,
+
+                $this->strSerie,
+
+                $this->strModelo,
+
+                $this->strDivision,
 
                 $this->strComentarios,
 
-                $this->strVendedor
+                $this->IntSubtotal,
+
+                $this->StrDescripcion,
+
+                $this->IntIdVendedor
             );
 
             $request = $this->update($sql, $arrData);
@@ -215,7 +255,7 @@ class ServicioModel extends Mysql
     public function selecDatosVendedores()
     {
 
-        $sql = "SELECT p.idpersona , concat_ws(' ',p.nombres,p.apellidos) as nombre FROM persona p, rol r where r.idrol = p.rolid and r.nombrerol IN  ('Especialista SIAP', 'Potencializador de Ventas Digitales')";
+        $sql = "SELECT p.idpersona , concat_ws(' ',p.nombres,p.apellidos) as nombre FROM persona p, rol r where r.idrol = p.rolid and r.nombrerol ='Posventa'";
 
         $request = $this->select_all($sql);
 
@@ -230,14 +270,35 @@ class ServicioModel extends Mysql
     {
         $array = $_SESSION['userData']; // datos del rol de usuario
 
-        if ($array['nombrerol'] == 'Administrador' or $array['nombrerol'] == 'Coordinadora CAP' or $array['nombrerol'] == 'Potencializador de Ventas Digitales') {
+        if ($array['nombrerol'] == 'Administrador' or $array['nombrerol'] == 'Coordinadora CAP' or $array['nombrerol'] == 'Posventa') {
 
             $sql = "SELECT 
-            *
-        FROM
-            tm_servicio s,
-            persona p
-        WHERE
+		s.usu_id,
+        s.usu_fac,
+        s.usu_jdl,
+        s.usu_suc,
+        s.usu_nom,
+        s.usu_tel,
+        s.usu_cor,
+        s.usu_dir,
+        s.usu_ciu,
+        s.usu_est,
+        s.usu_ser,
+        s.usu_mod,
+        s.usu_div,
+        s.usu_com,
+        s.usu_sub,
+        s.usu_desc,
+        s.est,
+        s.usu_asig,
+        s.fech_crea,
+        s.act,
+        CONCAT_WS(' ', p.nombres, p.apellidos) AS usu_vendedor,
+        p.email_user
+	FROM
+        dima.tm_servicio s,
+        dima.persona p
+	WHERE
             s.usu_asig = p.idpersona AND s.est != 11
         ORDER BY s.usu_id DESC";
         } else {
@@ -246,28 +307,33 @@ class ServicioModel extends Mysql
             $idUsuario = $_SESSION['idUser']; // id del usuario para mostrar los leads de cada vendedor 
 
             $sql = "SELECT 
-			u.usu_id,
-			u.usu_maq,
-			u.usu_nom,
-			u.usu_correo,
-			u.usu_num,
-			u.usu_city,
-			u.usu_hec,
-			u.usu_cultivo,
-			u.landing_page,
-			CONCAT_WS(' ', p.nombres, p.apellidos) AS usu_vendedor,
-			u.usu_cmt,
-			u.fech_crea,
-			u.usu_asig,
-			u.est,
-			u.act
-		FROM
-			tm_usuario u,
-			persona p
-		WHERE
-			u.usu_asig = p.idpersona AND u.est != 11
-			AND p.idpersona = $idUsuario
-		ORDER BY usu_id DESC";
+            s.usu_id,
+            s.usu_fac,
+            s.usu_jdl,
+            s.usu_suc,
+            s.usu_nom,
+            s.usu_tel,
+            s.usu_cor,
+            s.usu_dir,
+            s.usu_ciu,
+            s.usu_est,
+            s.usu_ser,
+            s.usu_mod,
+            s.usu_div,
+            s.usu_com,
+            s.est,
+            s.usu_asig,
+            s.fech_crea,
+            s.act,
+            CONCAT_WS(' ', p.nombres, p.apellidos) AS usu_vendedor,
+            p.email_user
+        FROM
+            dima.tm_servicio s,
+            dima.persona p
+        WHERE
+                s.usu_asig = p.idpersona AND s.est != 11
+                AND p.idpersona = $idUsuario
+            ORDER BY s.usu_id DESC"; 
         }
 
         $request = $this->select_all($sql);
@@ -294,6 +360,8 @@ class ServicioModel extends Mysql
         s.usu_mod,
         s.usu_div,
         s.usu_com,
+        s.usu_sub,
+        s.usu_desc,
         s.est,
         s.usu_asig,
         s.act,

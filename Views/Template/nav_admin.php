@@ -92,7 +92,7 @@
 
 
 
-            <?php if (!empty($_SESSION['permisos'][10]['r']) || !empty($_SESSION['permisos'][11]['r']) || !empty($_SESSION['permisos'][12]['r']) || !empty($_SESSION['permisos'][13]['r'])) { ?>
+            <?php if (!empty($_SESSION['permisos'][10]['r']) || !empty($_SESSION['permisos'][11]['r']) || !empty($_SESSION['permisos'][12]['r']) || !empty($_SESSION['permisos'][13]['r']) || !empty($_SESSION['permisos'][14]['r']) ) { ?>
 
 
 

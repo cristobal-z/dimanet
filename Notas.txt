@@ -10,3 +10,13 @@ inserta
 y muestra
 se modifico Views/template/navAdmin
 y config
+
+04/10/2023
+SE AGREGARON DOS CAMPOS MAS
+-SUBTOTOAL
+-DESCRIPCION
+
+
+
+
+

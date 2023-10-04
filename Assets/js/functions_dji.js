@@ -297,7 +297,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     let objData = JSON.parse(request.responseText);
 
                     if (objData.status) {
-
+                        console.log(rowTable);
                         if (rowTable == "") {
 
 
@@ -307,7 +307,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
                             // window.location.reload()
 
-                            tableDji.api().ajax.reload();
+                           // tableDji.api().ajax.reload();
+                           console.log()
 
                         } else {
 

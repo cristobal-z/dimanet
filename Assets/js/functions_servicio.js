@@ -154,7 +154,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
             { "data": "usu_ciu" },
 
+            { "data": "usu_ser" },
+
+            { "data": "usu_mod" },
+
+            { "data": "usu_div" },
+
+            { "data": "usu_vendedor" },
+
+            { "data": "usu_desc" },
+
             { "data": "usu_com" },
+
+            { "data": "usu_sub" },
 
             { "data": "options" }
 
@@ -254,7 +266,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
            // let strCanal = document.querySelector('#landing_page').value;
 
-           // let strVendedor = document.querySelector('#usu_vendedor').value;
+            let strVendedor = document.querySelector('#usu_vendedor').value;
 
            // let strComentarios = document.querySelector('#usu_cmt').value;
 
@@ -306,6 +318,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     if (objData.status) {
 
+                        console.log(rowTable);
                         if (rowTable == "") {
 
 
@@ -315,7 +328,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                             // window.location.reload()
 
-                            tableServicio.api().ajax.reload();
+                           // tableServicio.api().ajax.reload();
 
                         } else {
 
@@ -381,7 +394,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                             rowTable.cells[4].textContent = strCiudad;
 
-                            rowTable.cells[5].textContent = strVendedor;
+                           // rowTable.cells[5].textContent = strVendedor;
 
                             rowTable = "";
 
@@ -392,7 +405,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                             let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 
-                            let ajaxUrl = base_url + '/dji/getDatos/' + strid;
+                            let ajaxUrl = base_url + '/servicio/getDatos/' + strid;
 
                             request.open("GET", ajaxUrl, true);
 
@@ -406,7 +419,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                                     if (objData.status) { // si el arreglo se ejecutó 
 
-                                        let maquina = objData.data.usu_maq;
+                                        //let maquina = objData.data.usu_maq;
 
                                         let nombre = objData.data.usu_vendedor; // nombre del vendedor
 
@@ -422,7 +435,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                                             let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 
-                                            let ajaxUrl = base_url + 'Libraries/phpmailer/enviar.php?datos=' + nombre + '&' + 'correo=' + correo + '&equipo=' + maquina+'&NomCli='+strNombre+'&CiuClie='+strCiudad;
+                                            let ajaxUrl = base_url + 'Libraries/phpmailer/enviar.php?datosServicio=' + nombre + '&' + 'correo=' + correo + '&NomCli='+strNombre+'&CiuClie='+strCiudad;
 
                                             request.open("GET", ajaxUrl, true);
 
@@ -434,7 +447,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                                     let objDataCorreo = JSON.parse(request.responseText);
 
                                                     if (objDataCorreo.status == true) { // si hubo algun error al enviar el correo
-                                                        swal("Dji", objDataCorreo.msg, "success");
+                                                        swal("Servicio", objDataCorreo.msg, "success");
                                                     } else {
                                                         swal("Error", objDataCorreo.msg, "error");
                                                     }
@@ -455,7 +468,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 }
 
                             }
-                        } /* else 
+                        }     /* else 
                         
                         { // si el campo id esta vaco es porque es un nuevo lead, y se enviara un correo de bienvenida.
 
@@ -665,19 +678,19 @@ function fntViewInfo(iddatos) {
 
 
 // funcion para cargar los datos de los vendedores en el modal 'Nuevo lead'
-/*
+
 window.addEventListener('load', function () {
 
     fntCargarVendedores();
 
-}, false);*/
+}, false);
 
 
 function fntCargarVendedores() {
 
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 
-    let ajaxUrl = base_url + '/dji/DatosVendedores/';
+    let ajaxUrl = base_url + '/servicio/DatosVendedores/';
 
     request.open("GET", ajaxUrl, true);
 
@@ -709,7 +722,7 @@ function fntEditLead(element, idlead) {
 
     rowTable = element.parentNode.parentNode.parentNode;
 
-    document.querySelector('#titleModal').innerHTML = "Actualizar Lead";
+    document.querySelector('#titleModal').innerHTML = "Actualizar datos";
 
     document.querySelector('.modal-header').classList.replace("headerRegister", "headerUpdate");
 
@@ -742,7 +755,7 @@ function fntEditLead(element, idlead) {
 
                 document.querySelector("#usu_id").value = objData.data.usu_id;
 
-                document.querySelector("#usu_vendedor_copia").value = objData.data.usu_vendedor_copia;
+                document.querySelector("#usu_vendedor_copia").value = objData.data.usu_asig;
 
                 document.querySelector("#usu_fac").value = objData.data.usu_fac;
 
@@ -772,10 +785,14 @@ function fntEditLead(element, idlead) {
 
                 document.querySelector("#usu_com").value = objData.data.usu_com;
 
+                document.querySelector("#usu_sub").value = objData.data.usu_sub;
 
-                // document.querySelector("#usu_vendedor").value = objData.data.usu_vendedor;
+                document.querySelector("#usu_desc").value = objData.data.usu_desc;
 
-               // document.querySelector("#usu_mod").value = objData.data.usu_asig; // input de respaldo para validar los cambios de vendedor
+
+                 document.querySelector("#usu_vendedor").value = objData.data.usu_asig;
+
+               // document.querySelector("#usu_vendedor").value = objData.data.usu_asig; // input de respaldo para validar los cambios de vendedor
 
                 //var select = document.getElementById("usu_vendedor");
                 //select.value = objData.data.usu_asig; // para seleccionar el item de select
@@ -1448,7 +1465,7 @@ function openModal() {
 
     document.querySelector('#btnText').innerHTML = "Guardar";
 
-    document.querySelector('#titleModal').innerHTML = "Nuevo Usuario";
+    document.querySelector('#titleModal').innerHTML = "Nuevo servicio";
 
     document.querySelector("#formServicio").reset();
 

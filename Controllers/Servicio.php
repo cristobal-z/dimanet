@@ -20,12 +20,12 @@ class Servicio extends Controllers
 			die();
 		}
 
-		getPermisos(MDLEADS);
+		getPermisos(MDSERVICIO);
 	}
 
 
 
-	public function Servicio()
+	public function Servicio() 
 
 	{
 
@@ -89,6 +89,12 @@ class Servicio extends Controllers
 
                 $usu_com = $_POST['usu_com'];
 
+                $usu_asig = $_POST['usu_vendedor'];
+
+				$usu_sub = $_POST['usu_sub'];
+
+				$usu_desc = $_POST['usu_desc'];
+
 
 
 				$request_user = "";
@@ -126,7 +132,13 @@ class Servicio extends Controllers
 
 							$usu_div,
 
-                            $usu_com
+                            $usu_com,
+
+							$usu_sub,
+
+							$usu_desc,
+
+                            $usu_asig
 						);
 					}
 				} else {
@@ -138,25 +150,37 @@ class Servicio extends Controllers
 						$request_user = $this->model->updateUsuario(
 							$idUsuario,
 
-							$usu_maq,
+							$usu_fac,
 
-							$strNombre,
+							$usu_jdl,
 
-							$strCiudad,
+							$usu_suc,
 
-							$intTelefono,
+							$usu_nom,
 
-							$strEmail,
+							$usu_tel,
 
-							$strCultivo,
+							$usu_cor,
 
-							$strHectareas,
+							$usu_dir,
 
-							$strCanal,
+							$usu_ciu,
 
-							$strComentarios,
+							$usu_est,
 
-							$strVendedor
+							$usu_ser,
+
+                            $usu_mod,
+
+							$usu_div,
+
+                            $usu_com,
+
+							$usu_sub,
+
+							$usu_desc,
+
+                            $usu_asig
 						);
 					}
 				}
@@ -219,15 +243,15 @@ class Servicio extends Controllers
 						</button>';
 				} else if ($arrData[$i]['est'] == 0) {
 
-					$arrData[$i]['est'] = '<div class = "container"> <span id="boton-status" class="boton-status badge badge-dark" style="margin-left: 20px; margin-bottom: 8px;">Canalizad</span><br>
+					$arrData[$i]['est'] = '<div class = "container"> <span id="boton-status" class="boton-status badge badge-dark" style="margin-left: 20px; margin-bottom: 8px;">Canalizado</span><br>
 
 					<div class = "row"> <button class="btn btn-dark btn-sm btnStatus" style="margin-left: 20px;" onClick="canalizarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Canalización"><i class="fa fa-user-o" aria-hidden="true"></i></button>
 
-						<button class="btn btn-outline-danger btn-sm btnStatus" onClick="demoStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Demostración"><i class="fa fa-calendar" aria-hidden="true"></i></button> </div
+						<button class="btn btn-outline-danger btn-sm btnStatus" onClick="demoStatus(' . $arrData[$i]['usu_id'] . ')" title="Cotizacion"><i class="fa fa-list" aria-hidden="true"></i></button> </div
 
-						<div class = "row">	<button class="btn btn-outline-warning btn-sm btnStatus" onClick="negociarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Negociación"><i class="fa fa-briefcase" aria-hidden="true"></i></button>
+						<div class = "row">	<button class="btn btn-outline-warning btn-sm btnStatus" onClick="negociarStatus(' . $arrData[$i]['usu_id'] . ')" title="Abrir Orden de trabajo"><i class="fa fa-wrench" aria-hidden="true"></i></button>
 
-						<button class="btn btn-outline-success btn-sm btnStatus" " onClick="comprarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Compra"><i class="fa fa-money" aria-hidden="true"></i></button> </div>
+						<button class="btn btn-outline-success btn-sm btnStatus" " onClick="comprarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Factura"><i class="fa fa-money" aria-hidden="true"></i></button> </div>
 
 						<div class = "row"><button class="btn btn-outline-secondary btn-sm btnStatus" style="margin-left: 35px; margin-top: 2px;" onClick="offStatus(' . $arrData[$i]['usu_id'] . ')" title="Apagar Lead"><i class="fa fa-toggle-off" aria-hidden="true"></i></button></div </div>';
 
@@ -239,9 +263,9 @@ class Servicio extends Controllers
 
 							<button class="btn btn-dark btn-sm btnStatus" style="margin-left: 20px;" onClick="canalizarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Canalización" disabled><i class="fa fa-user-o" aria-hidden="true"></i></button>
 
-							<button class="btn btn-outline-danger btn-sm btnStatus" onClick="demoStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Demostración" disabled><i class="fa fa-calendar" aria-hidden="true"></i></button>
+							<button class="btn btn-outline-danger btn-sm btnStatus" onClick="demoStatus(' . $arrData[$i]['usu_id'] . ')" title="Cotizacion" disabled><i class="fa fa-list" aria-hidden="true"></i></button>
 
-							<button class="btn btn-outline-warning btn-sm btnStatus" style="margin-left: 20px; margin-top: 2px;" onClick="negociarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Negociación" disabled><i class="fa fa-briefcase" aria-hidden="true"></i></button>
+							<button class="btn btn-outline-warning btn-sm btnStatus" style="margin-left: 20px; margin-top: 2px;" onClick="negociarStatus(' . $arrData[$i]['usu_id'] . ')" title="Abrir Orden de trabajo" disabled><i class="fa fa-wrench" aria-hidden="true"></i></button>
 
 							<button class="btn btn-outline-success btn-sm btnStatus" style="margin-top: 2px;" onClick="comprarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Compra" disabled><i class="fa fa-money" aria-hidden="true"></i></button> <br>
 
@@ -256,9 +280,9 @@ class Servicio extends Controllers
 
 						<button class="btn btn-outline-dark btn-sm btnStatus" style="margin-left: 20px;" onClick="canalizarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Canalización"><i class="fa fa-user-o" aria-hidden="true"></i></button>
 
-						<button class="btn btn-outline-danger btn-sm btnStatus" onClick="demoStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Demostración"><i class="fa fa-calendar" aria-hidden="true"></i></button><br>
+						<button class="btn btn-outline-danger btn-sm btnStatus" onClick="demoStatus(' . $arrData[$i]['usu_id'] . ')" title="Cotizar"><i class="fa fa-list" aria-hidden="true"></i></button><br>
 
-						<button class="btn btn-outline-warning btn-sm btnStatus" style="margin-left: 20px; margin-top: 2px;" onClick="negociarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Negociación"><i class="fa fa-briefcase" aria-hidden="true"></i></button>
+						<button class="btn btn-outline-warning btn-sm btnStatus" style="margin-left: 20px; margin-top: 2px;" onClick="negociarStatus(' . $arrData[$i]['usu_id'] . ')" title="Abrir orde de trabajo"><i class="fa fa-wrench" aria-hidden="true"></i></button>
 
 						<button class="btn btn-outline-success btn-sm btnStatus" style="margin-top: 2px;" onClick="comprarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Compra"><i class="fa fa-money" aria-hidden="true"></i></button> <br>
 
@@ -272,9 +296,9 @@ class Servicio extends Controllers
 
 							<button class="btn btn-outline-dark btn-sm btnStatus" style="margin-left: 20px;" onClick="canalizarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Canalizaciónción" disabled><i class="fa fa-user-o" aria-hidden="true"></i></button>
 
-							<button class="btn btn-outline-danger btn-sm btnStatus" onClick="demoStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Demostracióncion" disabled><i class="fa fa-calendar" aria-hidden="true"></i></button><br>
+							<button class="btn btn-outline-danger btn-sm btnStatus" onClick="demoStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Demostracióncion" disabled><i class="fa fa-list" aria-hidden="true"></i></button><br>
 
-							<button class="btn btn-outline-warning btn-sm btnStatus" style="margin-left: 20px; margin-top: 2px;" onClick="negociarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Negociación" disabled><i class="fa fa-briefcase" aria-hidden="true"></i></button>
+							<button class="btn btn-outline-warning btn-sm btnStatus" style="margin-left: 20px; margin-top: 2px;" onClick="negociarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Negociación" disabled><i class="fa fa-wrench" aria-hidden="true"></i></button>
 
 							<button class="btn btn-outline-success btn-sm btnStatus" style="margin-top: 2px;" onClick="comprarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Compra" disabled><i class="fa fa-money" aria-hidden="true"></i></button> <br>
 
@@ -282,29 +306,29 @@ class Servicio extends Controllers
 					}
 				} else if ($arrData[$i]['est'] == 4) {
 
-					$arrData[$i]['est'] = '<span id="boton-status" class="boton-status badge badge-danger" style="margin-left: 20px; margin-bottom: 8px;">En demo</span><br>
+					$arrData[$i]['est'] = '<span id="boton-status" class="boton-status badge badge-danger" style="margin-left: 20px; margin-bottom: 8px;">En Cotizacion</span><br>
 
 						<button class="btn btn-outline-dark btn-sm btnStatus" style="margin-left: 20px;" onClick="canalizarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Canalización"><i class="fa fa-user-o" aria-hidden="true"></i></button>
 
-						<button class="btn btn-danger btn-sm btnStatus" onClick="demoStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Demostración"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+						<button class="btn btn-danger btn-sm btnStatus" onClick="demoStatus(' . $arrData[$i]['usu_id'] . ')" title="Cotizado"><i class="fa fa-list" aria-hidden="true"></i></button>
 
-						<button class="btn btn-outline-warning btn-sm btnStatus" style="margin-left: 20px; margin-top: 2px;" onClick="negociarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Negociación"><i class="fa fa-briefcase" aria-hidden="true"></i></button>
+						<button class="btn btn-outline-warning btn-sm btnStatus" style="margin-left: 20px; margin-top: 2px;" onClick="negociarStatus(' . $arrData[$i]['usu_id'] . ')" title="Abrir Orden de trabajo"><i class="fa fa-wrench" aria-hidden="true"></i></button>
 
-						<button class="btn btn-outline-success btn-sm btnStatus" style="margin-top: 2px;" onClick="comprarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Atención"><i class="fa fa-money" aria-hidden="true"></i></button><br>
+						<button class="btn btn-outline-success btn-sm btnStatus" style="margin-top: 2px;" onClick="comprarStatus(' . $arrData[$i]['usu_id'] . ')" title="Compró"><i class="fa fa-money" aria-hidden="true"></i></button><br>
 
-						<button class="btn btn-outline-secondary btn-sm btnStatus" style="margin-left: 35px; margin-top: 2px;" onClick="offStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Atención"><i class="fa fa-toggle-off" aria-hidden="true"></i></button>';
+						<button class="btn btn-outline-secondary btn-sm btnStatus" style="margin-left: 35px; margin-top: 2px;" onClick="offStatus(' . $arrData[$i]['usu_id'] . ')" title="Apagar Lead"><i class="fa fa-toggle-off" aria-hidden="true"></i></button>';
 
 
 
 					if ($arrData[$i]['act'] == 2) {
 
-						$arrData[$i]['est'] = '<span id="boton-status" class="boton-status badge badge-danger" style="margin-left: 20px; margin-bottom: 8px;">En demo</span><br>
+						$arrData[$i]['est'] = '<span id="boton-status" class="boton-status badge badge-danger" style="margin-left: 20px; margin-bottom: 8px;">En cotizacion</span><br>
 
 							<button class="btn btn-outline-dark btn-sm btnStatus" style="margin-left: 20px;" onClick="canalizarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Canalización" disabled><i class="fa fa-user-o" aria-hidden="true"></i></button>
 
-							<button class="btn btn-danger btn-sm btnStatus" onClick="demoStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Demostración" disabled><i class="fa fa-calendar" aria-hidden="true"></i></button>
+							<button class="btn btn-danger btn-sm btnStatus" onClick="demoStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Demostración" disabled><i class="fa fa-list" aria-hidden="true"></i></button>
 
-							<button class="btn btn-outline-warning btn-sm btnStatus" style="margin-left: 20px; margin-top: 2px;" onClick="negociarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Negociación" disabled><i class="fa fa-briefcase" aria-hidden="true"></i></button>
+							<button class="btn btn-outline-warning btn-sm btnStatus" style="margin-left: 20px; margin-top: 2px;" onClick="negociarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Negociación" disabled><i class="fa fa-wrench" aria-hidden="true"></i></button>
 
 							<button class="btn btn-outline-success btn-sm btnStatus" style="margin-top: 2px;" onClick="comprarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Atención" disabled><i class="fa fa-money" aria-hidden="true"></i></button><br>
 
@@ -327,11 +351,11 @@ class Servicio extends Controllers
 
 						<button class="btn btn-outline-dark btn-sm btnStatus" style="margin-left: 16px;" onClick="canalizarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Canalización"><i class="fa fa-user-o" aria-hidden="true"></i></button>
 
-						<button class="btn btn-outline-danger btn-sm btnStatus" onClick="demoStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Demostración"><i class="fa fa-calendar" aria-hidden="true"></i></button><br>
+						<button class="btn btn-outline-danger btn-sm btnStatus" onClick="demoStatus(' . $arrData[$i]['usu_id'] . ')" title="Cotizacion"><i class="fa fa-list" aria-hidden="true"></i></button><br>
 
-						<button class="btn btn-outline-warning btn-sm btnStatus" style="margin-left: 16px; margin-top: 2px;" onClick="negociarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Negociación"><i class="fa fa-briefcase" aria-hidden="true"></i></button>
+						<button class="btn btn-outline-warning btn-sm btnStatus" style="margin-left: 16px; margin-top: 2px;" onClick="negociarStatus(' . $arrData[$i]['usu_id'] . ')" title="Orden de trabajo"><i class="fa fa-wrench" aria-hidden="true"></i></button>
 
-						<button class="btn btn-success btn-sm btnStatus" style="margin-top: 2px;" onClick="comprarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Atención"><i class="fa fa-money" aria-hidden="true"></i></button> <br>
+						<button class="btn btn-success btn-sm btnStatus" style="margin-top: 2px;" onClick="comprarStatus(' . $arrData[$i]['usu_id'] . ')" title="Compró"><i class="fa fa-money" aria-hidden="true"></i></button> <br>
 
 						<button class="btn btn-outline-secondary btn-sm btnStatus" style="margin-left: 35px; margin-top: 2px;" onClick="offStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Atención"><i class="fa fa-toggle-off" aria-hidden="true"></i></button>';
 
@@ -343,9 +367,9 @@ class Servicio extends Controllers
 
 							<button class="btn btn-outline-dark btn-sm btnStatus" style="margin-left: 16px;" onClick="canalizarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Canalización" disabled><i class="fa fa-user-o" aria-hidden="true"></i></button>
 
-							<button class="btn btn-outline-danger btn-sm btnStatus" onClick="demoStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Demostración" disabled><i class="fa fa-calendar" aria-hidden="true"></i></button><br>
+							<button class="btn btn-outline-danger btn-sm btnStatus" onClick="demoStatus(' . $arrData[$i]['usu_id'] . ')" title="Cotizacion" disabled><i class="fa fa-list" aria-hidden="true"></i></button><br>
 
-							<button class="btn btn-outline-warning btn-sm btnStatus" style="margin-left: 16px; margin-top: 2px;" onClick="negociarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Negociación" disabled><i class="fa fa-briefcase" aria-hidden="true"></i></button>
+							<button class="btn btn-outline-warning btn-sm btnStatus" style="margin-left: 16px; margin-top: 2px;" onClick="negociarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Negociación" disabled><i class="fa fa-wrench" aria-hidden="true"></i></button>
 
 							<button class="btn btn-success btn-sm btnStatus" style="margin-top: 2px;" onClick="comprarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Atención" disabled><i class="fa fa-money" aria-hidden="true"></i></button> <br>
 
@@ -353,13 +377,13 @@ class Servicio extends Controllers
 					}
 				} else if ($arrData[$i]['est'] == 7) {
 
-					$arrData[$i]['est'] = '<span id="boton-status" class="boton-status badge badge-warning" style="margin-left: 20px; margin-bottom: 8px;">Negociación</span><br>
+					$arrData[$i]['est'] = '<span id="boton-status" class="boton-status badge badge-warning" style="margin-left: 20px; margin-bottom: 8px;">OT Abierta</span><br>
 
 						<button class="btn btn-outline-dark btn-sm btnStatus" style="margin-left: 16px;" onClick="canalizarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Canalización"><i class="fa fa-user-o" aria-hidden="true"></i></button>
 
-						<button class="btn btn-outline-danger btn-sm btnStatus" onClick="demoStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Demostración"><i class="fa fa-calendar" aria-hidden="true"></i></button><br>
+						<button class="btn btn-outline-danger btn-sm btnStatus" onClick="demoStatus(' . $arrData[$i]['usu_id'] . ')" title="Cotizacion"><i class="fa fa-list" aria-hidden="true"></i></button><br>
 
-						<button class="btn btn-warning btn-sm btnStatus" style="margin-left: 16px; margin-top: 2px;" onClick="negociarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Negociación"><i class="fa fa-briefcase" aria-hidden="true"></i></button>
+						<button class="btn btn-warning btn-sm btnStatus" style="margin-left: 16px; margin-top: 2px;" onClick="negociarStatus(' . $arrData[$i]['usu_id'] . ')" title="Orden de trabajo abierta"><i class="fa fa-wrench" aria-hidden="true"></i></button>
 
 						<button class="btn btn-outline-success btn-sm btnStatus" style="margin-top: 2px;" onClick="comprarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Atención"><i class="fa fa-money" aria-hidden="true"></i></button><br>
 
@@ -369,13 +393,13 @@ class Servicio extends Controllers
 
 					if ($arrData[$i]['act'] == 2) {
 
-						$arrData[$i]['est'] = '<span id="boton-status" class="boton-status badge badge-warning" style="margin-left: 20px; margin-bottom: 8px;">Negociación</span><br>
+						$arrData[$i]['est'] = '<span id="boton-status" class="boton-status badge badge-warning" style="margin-left: 20px; margin-bottom: 8px;">OT abierta</span><br>
 
 							<button class="btn btn-outline-dark btn-sm btnStatus" style="margin-left: 16px;" onClick="canalizarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Canalización" disabled><i class="fa fa-user-o" aria-hidden="true"></i></button>
 
-							<button class="btn btn-outline-danger btn-sm btnStatus" onClick="demoStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Demostración" disabled><i class="fa fa-calendar" aria-hidden="true"></i></button><br>
+							<button class="btn btn-outline-danger btn-sm btnStatus" onClick="demoStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Demostración" disabled><i class="fa fa-list" aria-hidden="true"></i></button><br>
 
-							<button class="btn btn-warning btn-sm btnStatus" style="margin-left: 16px; margin-top: 2px;" onClick="negociarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Negociación" disabled><i class="fa fa-briefcase" aria-hidden="true"></i></button>
+							<button class="btn btn-warning btn-sm btnStatus" style="margin-left: 16px; margin-top: 2px;" onClick="negociarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Negociación" disabled><i class="fa fa-wrench" aria-hidden="true"></i></button>
 
 							<button class="btn btn-outline-success btn-sm btnStatus" style="margin-top: 2px;" onClick="comprarStatus(' . $arrData[$i]['usu_id'] . ')" title="Iniciar Atención" disabled><i class="fa fa-money" aria-hidden="true"></i></button> <br>
 

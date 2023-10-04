@@ -88,7 +88,7 @@ try {
 
             <div class="modal-header headerRegister">
 
-                <h5 class="modal-title" id="titleModal">Nuevo Lead </h5>
+                <h5 class="modal-title" id="titleModal">Nuevo servicio </h5>
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 
@@ -106,7 +106,7 @@ try {
 
                     <input type="hidden" id="usu_vendedor_copia" name="usu_vendedor_copia">
 
-                    <p class="text-primary">Todos los campos son obligatorios servicio <?php echo $array['nombrerol']; ?> </p>
+                    <p class="text-primary">Todos los campos son obligatorios servicio </p>
 
 
 
@@ -163,15 +163,15 @@ try {
 
                     <div class="form-row">
 
-                        <div class="form-group col-lg-4">
+                        <div class="form-group col-lg-3">
 
                             <label for="usu_nom">Nombre o Razon social</label>
 
-                            <input type="text" class="form-control " id="usu_nom" name="usu_nom">
+                            <input type="text" class="form-control " id="usu_nom" name="usu_nom" required>
 
                         </div>
 
-                        <div class="form-group col-lg-4">
+                        <div class="form-group col-lg-3">
 
                             <label for="usu_tel">Telefono de contacto</label>
 
@@ -179,11 +179,19 @@ try {
 
                         </div>
 
-                        <div class="form-group col-lg-4">
+                        <div class="form-group col-lg-3">
 
                             <label for="usu_cor">Correo</label>
 
                             <input type="email" class="form-control" id="usu_cor" name="usu_cor" required>
+
+                        </div>
+
+                        <div class="form-group col-md-3">
+
+                            <label for="usu_dir">Direccion del cliente</label>
+
+                            <input type="text" class="form-control" id="usu_dir" name="usu_dir" required>
 
                         </div>
 
@@ -193,13 +201,7 @@ try {
 
                     <div class="form-row">
 
-                        <div class="form-group col-md-4">
 
-                            <label for="usu_dir">Direccion o ubicacion del cliente</label>
-
-                            <input type="text" class="form-control" id="usu_dir" name="usu_dir">
-
-                        </div>
 
                         <div class="form-group col-md-4">
 
@@ -213,7 +215,7 @@ try {
 
                             <label for="usu_est">Estado:</label>
 
-                            <select name="usu_est"  class="form-control" id="usu_est">
+                            <select name="usu_est" class="form-control" id="usu_est">
                                 <option value="aguascalientes">Aguascalientes</option>
                                 <option value="bajacalifornia">Baja California</option>
                                 <option value="bajacaliforniasur">Baja California Sur</option>
@@ -249,7 +251,13 @@ try {
 
                             </select>
 
-                            
+                        </div>
+
+                        <div class="form-group col-md-4">
+
+                            <label for="usu_ser">Numero de serie del equipo</label>
+
+                            <input type="text" class="form-control" id="usu_ser" name="usu_ser" >
 
                         </div>
 
@@ -257,43 +265,47 @@ try {
 
                     <div class="form-row">
 
-                        <div class="form-group col-md-4">
 
-                            <label for="usu_ser">Numero de serie del equipo</label>
 
-                            <input type="text" class="form-control" id="usu_ser" name="usu_ser" required>
-
-                        </div>
-
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-3">
 
                             <label for="usu_mod">Modelo del equipo</label>
 
-                            <input type="text" class="form-control" id="usu_mod" name="usu_mod" required>
+                            <input type="text" class="form-control" id="usu_mod" name="usu_mod" >
 
                         </div>
 
 
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-3">
 
 
 
 
                             <label for="usu_div">Division</label>
                             <select class="form-control" name="usu_div" id="usu_div">
-                            <option value="agricola">Agricola</option>
-                            <option value="construccion">Construcción</option>
-                            <option value="jardineriaygolf">Jardineria y Golf</option>
+                                <option value="agricola">Agricola</option>
+                                <option value="construccion">Construcción</option>
+                                <option value="jardineriaygolf">Jardineria y Golf</option>
 
                             </select>
-
-
-
-
-
-
-
                             <!--  <input type="text" class="form-control" id="usu_vendedor" name="usu_vendedor"> -->
+
+                        </div>
+
+                        <div class="form-group col-md-3">
+
+                            <label for="usu_vendedor">Usuario</label>
+                            <select class="form-control" name="usu_vendedor" id="usu_vendedor">
+                            </select>
+                            <!--  <input type="text" class="form-control" id="usu_vendedor" name="usu_vendedor"> -->
+
+                        </div>
+
+                        <div class="form-group col-md-3">
+
+                            <label for="usu_sub">$ Subtotal</label>
+
+                            <input type="text" class="form-control" id="usu_sub" name="usu_sub">
 
                         </div>
 
@@ -303,9 +315,17 @@ try {
 
                     <div class="form-row">
 
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-6">
 
-                            <label for="usu_com">Descripcion del servicio solicitado</label>
+                            <label for="usu_desc">Descripcion del servicio solicitado</label>
+
+                            <textarea type="text" class="form-control" id="usu_desc" name="usu_desc"></textarea>
+
+                        </div>
+
+                        <div class="form-group col-md-6">
+
+                            <label for="usu_com">Comentarios</label>
 
                             <textarea type="text" class="form-control" id="usu_com" name="usu_com"></textarea>
 

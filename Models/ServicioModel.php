@@ -296,8 +296,8 @@ class ServicioModel extends Mysql
         CONCAT_WS(' ', p.nombres, p.apellidos) AS usu_vendedor,
         p.email_user
 	FROM
-        dima.tm_servicio s,
-        dima.persona p
+        tm_servicio s,
+        persona p
 	WHERE
             s.usu_asig = p.idpersona AND s.est != 11
         ORDER BY s.usu_id DESC";
@@ -328,8 +328,8 @@ class ServicioModel extends Mysql
             CONCAT_WS(' ', p.nombres, p.apellidos) AS usu_vendedor,
             p.email_user
         FROM
-            dima.tm_servicio s,
-            dima.persona p
+            tm_servicio s,
+            persona p
         WHERE
                 s.usu_asig = p.idpersona AND s.est != 11
                 AND p.idpersona = $idUsuario

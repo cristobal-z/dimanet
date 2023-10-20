@@ -248,8 +248,8 @@ class AgricolaModel extends Mysql{
 			a.est,
 			a.act
 		FROM
-			dima.tm_agricola a,
-			dima.persona p
+			tm_agricola a,
+			persona p
 		WHERE
 			a.usu_asig = p.idpersona AND a.est != 11
 			AND p.idpersona = $idUsuario
@@ -285,8 +285,8 @@ class AgricolaModel extends Mysql{
 			a.act,
 			p.email_user
 		FROM
-			dima.tm_agricola a,
-			dima.persona p
+			tm_agricola a,
+			persona p
 		WHERE
 			a.usu_asig = p.idpersona AND a.est != 11
 			AND a.usu_id = {$iddatos}";

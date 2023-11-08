@@ -350,6 +350,7 @@ class ServicioModel extends Mysql
 		s.usu_id,
         s.usu_fac,
         s.usu_jdl,
+        s.usu_suc,
         s.usu_nom,
         s.usu_tel,
         s.usu_cor,

@@ -616,7 +616,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-function fntViewInfo(iddatos) {
+function fntViewInfo(iddatos) { 
 
     let request = (window.XMLHttpRequest) ?
 
@@ -624,7 +624,7 @@ function fntViewInfo(iddatos) {
 
         new ActiveXObject('Microsoft.XMLHTTP');
 
-    let ajaxUrl = base_url + '/dji/getDatos/' + iddatos;
+    let ajaxUrl = base_url + '/servicio/getDatos/' + iddatos; 
 
     request.open("GET", ajaxUrl, true);
 
@@ -640,29 +640,29 @@ function fntViewInfo(iddatos) {
 
                 let objMesaje = objData.data;
 
-                document.querySelector("#txtEquipo").innerHTML = objMesaje.usu_maq;
+               
 
                 document.querySelector("#txtStatus").innerHTML = objMesaje.est;
 
                 document.querySelector("#txtNombre").innerHTML = objMesaje.usu_nom;
 
-                document.querySelector("#txtCorreo").innerHTML = objMesaje.usu_correo;
+                document.querySelector("#txtCorreo").innerHTML = objMesaje.usu_cor;
 
-                document.querySelector("#txtTelefono").innerHTML = objMesaje.usu_num;
+                document.querySelector("#txtTelefono").innerHTML = objMesaje.usu_tel;
 
-                document.querySelector("#txtCiudad").innerHTML = objMesaje.usu_city;
+                document.querySelector("#txtCiudad").innerHTML = objMesaje.usu_ciu;
 
-                document.querySelector("#txtHectareas").innerHTML = objMesaje.usu_hec;
+                document.querySelector("#txtserie").innerHTML = objMesaje.usu_ser;
 
-                document.querySelector("#txtCultivo").innerHTML = objMesaje.usu_cultivo;
+                document.querySelector("#txtModelo").innerHTML = objMesaje.usu_mod;
 
-                document.querySelector("#txtCampaña").innerHTML = objMesaje.landing_page;
+                document.querySelector("#txtDivision").innerHTML = objMesaje.usu_div;
 
                 document.querySelector("#txtVendedor").innerHTML = objMesaje.usu_vendedor;
 
-                document.querySelector("#txtComentarios").innerHTML = objMesaje.usu_cmt;
+                document.querySelector("#txtComentarios").innerHTML = objMesaje.usu_com;
 
-                $('#modalViewDji').modal('show');
+                $('#modalViewServicio').modal('show');
 
             } else {
 
@@ -758,6 +758,8 @@ function fntEditLead(element, idlead) {
                 document.querySelector("#usu_vendedor_copia").value = objData.data.usu_asig;
 
                 document.querySelector("#usu_fac").value = objData.data.usu_fac;
+
+                document.querySelector("#usu_suc").value = objData.data.usu_suc;
 
                 document.querySelector("#usu_jdl").value = objData.data.usu_jdl;
 

@@ -426,7 +426,7 @@ document.addEventListener('DOMContentLoaded', function(){
                                                     let objDataCorreo = JSON.parse(request.responseText);
 
                                                     if (objDataCorreo.status == true) { // si hubo algun error al enviar el correo
-                                                        swal("Dji", objDataCorreo.msg, "success");
+                                                        swal("Agricola", objDataCorreo.msg, "success");
                                                     } else {
                                                         swal("Error", objDataCorreo.msg, "error");
                                                     }

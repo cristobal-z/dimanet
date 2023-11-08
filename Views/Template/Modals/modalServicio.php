@@ -359,7 +359,7 @@ try {
 
 
 
-<div class="modal fade" id="modalViewDji" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modalViewServicio" tabindex="-1" role="dialog" aria-hidden="true">
 
     <div class="modal-dialog">
 
@@ -367,7 +367,7 @@ try {
 
             <div class="modal-header header-primary">
 
-                <h5 class="modal-title" id="titleModal">Datos del contacto</h5>
+                <h5 class="modal-title" id="titleModal">Datos del cliente</h5>
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 
@@ -379,17 +379,11 @@ try {
 
             <div class="modal-body">
 
-                <table class="table table-bordered">
+                <table class="table table-bordered dark">
 
                     <tbody>
 
-                        <tr>
-
-                            <td>Equipo:</td>
-
-                            <td id="txtEquipo"></td>
-
-                        </tr>
+                        
 
                         <tr>
 
@@ -433,25 +427,25 @@ try {
 
                         <tr>
 
-                            <td>Número de hectáreas:</td>
+                            <td>Numero de serie:</td>
 
-                            <td id="txtHectareas"></td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>Tipo de cultivo:</td>
-
-                            <td id="txtCultivo"></td>
+                            <td id="txtserie"></td>
 
                         </tr>
 
                         <tr>
 
-                            <td>Campaña:</td>
+                            <td>Modelo:</td>
 
-                            <td id="txtCampaña"></td>
+                            <td id="txtModelo"></td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Division:</td>
+
+                            <td id="txtDivision"></td>
 
                         </tr>
 

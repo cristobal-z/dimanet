@@ -181,7 +181,7 @@
 
       <div class="modal-header header-primary">
 
-        <h5 class="modal-title" id="titleModal">Datos del contacto</h5>
+        <h5 class="modal-title" id="titleModal">Datos del cliente</h5>
 
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 
